@@ -1,0 +1,8 @@
+13-04-2017:
+	Aggiornata activity per la ricerca dei campetti (inserimento campi di ricerca)
+	- Da aggiungere pulsante reset per ciascun campo
+	Aggiornati colori EditText dei campi di login
+	
+14-04-2017:
+	Completata activity per la ricerca dei campetti
+	- Da iniziare activity per l'elenco dei risultati
