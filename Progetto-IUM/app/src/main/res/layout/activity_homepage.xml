@@ -1,0 +1,119 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:id="@+id/homepageLayout"
+        tools:context="com.ium.baratheon.progetto_ium.HomepageActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:theme="?attr/actionBarTheme"
+                android:minHeight="?attr/actionBarSize"
+                android:id="@+id/toolbar" />
+
+            <TextView
+                android:text="Le tue prenotazioni"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="70dp"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:id="@+id/textView"
+                android:textSize="20sp"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/drawer_item_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/ic_drawer" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:id="@+id/selectionLayout"
+            android:visibility="gone">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray"
+                android:theme="?attr/actionBarTheme"
+                android:minHeight="?attr/actionBarSize"
+                android:id="@+id/selectionToolbar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:gravity="center_vertical"
+                android:id="@+id/selectedItemsNumber"/>
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="@color/white"
+                android:paddingBottom="10dp"
+                android:paddingEnd="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                app:srcCompat="@drawable/ic_menu_delete"
+                android:id="@+id/deleteSelected"/>
+        </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="511dp"
+            android:layout_marginTop="55dp"
+            android:id="@+id/reservationList"
+            android:layout_alignParentTop="true" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addButton"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_margin="@dimen/fab_margin"
+            app:layout_anchorGravity="top|center_horizontal"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:tint="#FFFFFF"
+            android:layout_gravity="bottom|right"
+            app:backgroundTint="@color/colorPrimaryLight" />
+
+    </android.support.design.widget.CoordinatorLayout >
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu_homepage">
+        <include layout="@layout/nav_header"/>
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

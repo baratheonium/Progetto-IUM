@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context="com.ium.baratheon.progetto_ium.RegistrationActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:text="Nome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameLabel"
+                android:textSize="18sp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameInput"
+                android:inputType="textPersonName"
+                android:layout_marginTop="25dp"
+                android:ems="10" />
+
+            <TextView
+                android:text="Il campo Nome non può essere vuoto"
+                android:textStyle="italic"
+                android:textColor="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameError"
+                android:textSize="14sp"
+                android:layout_marginTop="70dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Cognome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/surnameLabel"
+                android:textSize="18sp"
+                android:layout_marginTop="100dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/surnameInput"
+                android:inputType="textPersonName"
+                android:layout_marginTop="125dp"
+                android:ems="10" />
+
+            <TextView
+                android:text="Il campo Cognome non può essere vuoto"
+                android:textStyle="italic"
+                android:textColor="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/surnameError"
+                android:textSize="14sp"
+                android:layout_marginTop="170dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="E-mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mailLabel"
+                android:textSize="18sp"
+                android:layout_marginTop="200dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mailInput"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="225dp"
+                android:ems="10" />
+
+            <TextView
+                android:text="Il campo E-mail non può essere vuoto"
+                android:textStyle="italic"
+                android:textColor="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mailError"
+                android:textSize="14sp"
+                android:layout_marginTop="270dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Età"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ageLabel"
+                android:textSize="18sp"
+                android:layout_marginTop="300dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ageInput"
+                android:inputType="number"
+                android:layout_marginTop="325dp"
+                android:ems="10" />
+
+            <TextView
+                android:text="Il campo Età non può essere vuoto"
+                android:textStyle="italic"
+                android:textColor="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ageError"
+                android:textSize="14sp"
+                android:layout_marginTop="370dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/usernameLabel"
+                android:textSize="18sp"
+                android:layout_marginTop="400dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/usernameInput"
+                android:layout_marginTop="425dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:text="Il campo Username non può essere vuoto"
+                android:textStyle="italic"
+                android:textColor="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/usernameError"
+                android:textSize="14sp"
+                android:layout_marginTop="470dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordLabel"
+                android:textSize="18sp"
+                android:layout_marginTop="500dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordInput"
+                android:inputType="textPassword"
+                android:layout_marginTop="525dp"
+                android:ems="10" />
+
+            <TextView
+                android:text="Il campo Password non può essere vuoto"
+                android:textStyle="italic"
+                android:textColor="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordError"
+                android:textSize="14sp"
+                android:layout_marginTop="570dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </android.support.design.widget.CoordinatorLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:layout_anchorGravity="top|center_horizontal"
+        app:srcCompat="@android:drawable/ic_menu_send"
+        android:id="@+id/sendButton"
+        android:tint="#FFFFFF"
+        android:layout_gravity="bottom|right"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin" />
+
+</android.support.design.widget.CoordinatorLayout>

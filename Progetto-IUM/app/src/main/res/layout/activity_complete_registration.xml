@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_complete_registration"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.ium.baratheon.progetto_ium.CompleteRegistrationActivity">
+
+    <TextView
+        android:text="USERNAME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/usernameRecap"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/default_pro_pic"
+        android:layout_marginTop="59dp"
+        android:id="@+id/proPic"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="ETA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameRecap"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ageRecap"
+        android:textSize="24sp" />
+
+    <TextView
+        android:text="EMAIL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/mailRecap"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:layout_below="@+id/ageRecap" />
+
+    <TextView
+        android:text="@string/editPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPic"
+        android:textSize="16sp"
+        android:layout_below="@+id/proPic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameRecap"
+        android:layout_marginTop="38dp"
+        android:textSize="24sp"
+        android:text="NOME COGNOME"
+        android:layout_below="@+id/editPic"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            app:layout_anchorGravity="top|center_horizontal"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/btn_check_buttonless_on"
+            android:id="@+id/confirmButton"
+            android:tint="#FFFFFF"
+            android:layout_gravity="bottom|right"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:rippleColor="@color/colorPrimaryDark" />
+    </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
