@@ -12,7 +12,7 @@
     tools:context="com.ium.baratheon.progetto_ium.CompleteRegistrationActivity">
 
     <TextView
-        android:text="USERNAME"
+        android:text="@string/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/usernameRecap"
@@ -27,10 +27,11 @@
         android:layout_marginTop="59dp"
         android:id="@+id/proPic"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/propic"/>
 
     <TextView
-        android:text="ETA"
+        android:text="@string/eta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameRecap"
@@ -40,7 +41,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:text="EMAIL"
+        android:text="@string/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -65,7 +66,7 @@
         android:id="@+id/nameRecap"
         android:layout_marginTop="38dp"
         android:textSize="24sp"
-        android:text="NOME COGNOME"
+        android:text="@string/sur_name"
         android:layout_below="@+id/editPic"
         android:layout_centerHorizontal="true" />
 
@@ -81,8 +82,9 @@
             app:srcCompat="@drawable/btn_check_buttonless_on"
             android:id="@+id/confirmButton"
             android:tint="#FFFFFF"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
             app:backgroundTint="@color/colorPrimaryDark"
+            android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
             app:rippleColor="@color/colorPrimaryDark" />

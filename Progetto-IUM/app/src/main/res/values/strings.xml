@@ -26,5 +26,38 @@
     <string name="end"><b>Ora fine</b></string>
     <string name="empty">Svuota campo</string>
 
+    <string name="name">Nome</string>
+    <string name="surname">Cognome</string>
+    <string name="mail">E-mail</string>
+    <string name="età">Età</string>
+    <string name="usern">Username</string>
+    <string name="password">Password</string>
+    <string name="phone">Telefono</string>
+    <string name="begin">Aperto dalle</string>
+    <string name="ends">alle</string>
+    <string name="fields">Campi</string>
+    <string name="price">Prezzo</string>
+
     <string name="desc">Drawer menù image</string>
+
+    <string name="username">USERNAME</string>
+    <string name="eta">ETA</string>
+    <string name="email">EMAIL</string>
+    <string name="sur_name">NOME COGNOME</string>
+
+    <string name="propic">Immagine del profilo</string>
+    <string name="drawer">Drawer icon</string>
+
+    <string name="structlist">Elenco strutture</string>
+    <string name="reservations">Le tue prenotazioni</string>
+    <string name="delete">Bottone di eliminazione</string>
+
+    <string name="errorName">Il campo Nome non può essere vuoto</string>
+    <string name="errorSurname">Il campo Cognome non può essere vuoto</string>
+    <string name="errorEmail">Il campo Email non può essere vuoto</string>
+    <string name="errorAge">Il campo Età non può essere vuoto</string>
+    <string name="errorUser">Il campo Username non può essere vuoto</string>
+    <string name="errorPass">Il campo Password non può essere vuoto</string>
+
+    <string name="favorites">Vista preferiti</string>
 </resources>

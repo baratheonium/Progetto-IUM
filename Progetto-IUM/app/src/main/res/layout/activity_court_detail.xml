@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_court_detail"
     android:layout_width="match_parent"
@@ -38,8 +37,8 @@
             android:background="@color/colorAccentLight">
 
             <TextView
-                android:text="Nome"
-                android:layout_width="wrap_content"
+                android:text="@string/name"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/nameRecap"
                 android:textSize="18sp"
@@ -49,7 +48,7 @@
                 android:textColor="@color/white"/>
 
             <TextView
-                android:text="Nome"
+                android:text=""
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/nameRecapText"
@@ -71,8 +70,8 @@
             android:layout_below="@id/nameLayout">
 
             <TextView
-                android:text="Mail"
-                android:layout_width="wrap_content"
+                android:text="@string/mail"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -80,7 +79,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:text="Mail"
+                android:text=""
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -101,8 +100,8 @@
             android:background="@color/colorAccentLight">
 
             <TextView
-                android:text="Telefono"
-                android:layout_width="wrap_content"
+                android:text="@string/phone"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -111,7 +110,7 @@
                 android:textColor="@color/white"/>
 
             <TextView
-                android:text="Telefono"
+                android:text=""
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -133,8 +132,8 @@
             android:layout_below="@id/phoneLayout">
 
             <TextView
-                android:text="Aperto dalle"
-                android:layout_width="wrap_content"
+                android:text="@string/begin"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -142,7 +141,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:text="Aperto dalle"
+                android:text=""
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -164,8 +163,8 @@
             android:background="@color/colorAccentLight">
 
             <TextView
-                android:text="alle"
-                android:layout_width="wrap_content"
+                android:text="@string/ends"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -174,7 +173,7 @@
                 android:textColor="@color/white"/>
 
             <TextView
-                android:text="alle"
+                android:text=""
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -195,8 +194,8 @@
             android:layout_below="@id/endLayout">
 
             <TextView
-                android:text="Campi"
-                android:layout_width="wrap_content"
+                android:text="@string/fields"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -204,7 +203,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:text="Campi"
+                android:text=""
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -226,8 +225,8 @@
             android:background="@color/colorAccentLight">
 
             <TextView
-                android:text="Prezzo"
-                android:layout_width="wrap_content"
+                android:text="@string/price"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -236,7 +235,7 @@
                 android:textColor="@color/white"/>
 
             <TextView
-                android:text="Prezzo"
+                android:text=""
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

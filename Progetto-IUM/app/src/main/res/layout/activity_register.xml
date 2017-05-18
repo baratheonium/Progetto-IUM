@@ -17,14 +17,14 @@
 
         <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin">
 
             <TextView
-                android:text="Nome"
+                android:text="@string/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/nameLabel"
@@ -41,7 +41,7 @@
                 android:ems="10" />
 
             <TextView
-                android:text="Il campo Nome non può essere vuoto"
+                android:text="@string/errorName"
                 android:textStyle="italic"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:text="Cognome"
+                android:text="@string/surname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/surnameLabel"
@@ -71,7 +71,7 @@
                 android:ems="10" />
 
             <TextView
-                android:text="Il campo Cognome non può essere vuoto"
+                android:text="@string/errorSurname"
                 android:textStyle="italic"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:text="E-mail"
+                android:text="@string/mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mailLabel"
@@ -101,7 +101,7 @@
                 android:ems="10" />
 
             <TextView
-                android:text="Il campo E-mail non può essere vuoto"
+                android:text="@string/errorEmail"
                 android:textStyle="italic"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:text="Età"
+                android:text="@string/età"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ageLabel"
@@ -131,7 +131,7 @@
                 android:ems="10" />
 
             <TextView
-                android:text="Il campo Età non può essere vuoto"
+                android:text="@string/errorAge"
                 android:textStyle="italic"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"
@@ -143,7 +143,7 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:text="Username"
+                android:text="@string/usern"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/usernameLabel"
@@ -161,7 +161,7 @@
                 android:inputType="textPersonName" />
 
             <TextView
-                android:text="Il campo Username non può essere vuoto"
+                android:text="@string/errorUser"
                 android:textStyle="italic"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"
@@ -173,7 +173,7 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:text="Password"
+                android:text="@string/password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/passwordLabel"
@@ -191,7 +191,7 @@
                 android:ems="10" />
 
             <TextView
-                android:text="Il campo Password non può essere vuoto"
+                android:text="@string/errorPass"
                 android:textStyle="italic"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"
@@ -212,9 +212,10 @@
         app:srcCompat="@android:drawable/ic_menu_send"
         android:id="@+id/sendButton"
         android:tint="#FFFFFF"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end"
         app:backgroundTint="@color/colorPrimaryDark"
         android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -29,9 +29,10 @@
             android:layout_alignParentTop="true" />
 
         <TextView
-            android:text="Elenco strutture"
+            android:text="@string/structlist"
             android:layout_marginTop="13dp"
             android:layout_marginLeft="70dp"
+            android:layout_marginStart="70dp"
             android:layout_width="250dp"
             android:layout_height="30dp"
             android:id="@+id/textView"
@@ -43,8 +44,10 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="7dp"
-            android:src="@drawable/ic_drawer" />
+            android:src="@drawable/ic_drawer"
+            android:contentDescription="@string/drawer"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
