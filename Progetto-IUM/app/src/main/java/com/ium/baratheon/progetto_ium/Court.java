@@ -23,6 +23,11 @@ public class Court implements Serializable{
     private Bitmap courtPic;  //Cambiato il tipo di courtpic da Image a Bitmap
     static List<Court> courtList;
 
+    public Court(){
+        if(courtList == null){
+            courtList = new ArrayList<Court>();
+        }
+    }
 
     public Court(String name, String mail, String phoneNumber, int begin, int end, int fieldNumber, int price){
         this.name = name;

@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CourtDetailActivity extends AppCompatActivity {
 
     TextView nameText, mailText, phoneText, beginText, endText, fieldsText, priceText;
@@ -15,20 +18,20 @@ public class CourtDetailActivity extends AppCompatActivity {
 
         Court thisCourt = (Court) getIntent().getSerializableExtra("thisCourt");
 
-        nameText = (TextView) findViewById(R.id.nameRecap);
-        mailText = (TextView) findViewById(R.id.mail);
-        phoneText = (TextView) findViewById(R.id.phone);
-        beginText = (TextView) findViewById(R.id.begin);
-        endText = (TextView) findViewById(R.id.end);
-        fieldsText = (TextView) findViewById(R.id.fields);
-        priceText = (TextView) findViewById(R.id.price);
+        nameText = (TextView) findViewById(R.id.nameRecapText);
+        mailText = (TextView) findViewById(R.id.mailText);
+        phoneText = (TextView) findViewById(R.id.phoneText);
+        beginText = (TextView) findViewById(R.id.beginText);
+        endText = (TextView) findViewById(R.id.endText);
+        fieldsText = (TextView) findViewById(R.id.fieldsText);
+        priceText = (TextView) findViewById(R.id.priceText);
 
-        nameText.setText(nameText.getText() + "                 " + thisCourt.getName());
-        mailText.setText(mailText.getText() + "                    " + thisCourt.getMail());
-        phoneText.setText(phoneText.getText() + "            " + thisCourt.getPhoneNumber());
-        beginText.setText(beginText.getText() + "      " + thisCourt.getBegin().toString());
-        endText.setText(endText.getText() + "                      " + thisCourt.getEnd().toString());
-        fieldsText.setText(fieldsText.getText() + "                " + thisCourt.getFieldNumber().toString());
-        priceText.setText(priceText.getText() + "               " + thisCourt.getPrice().toString());
+        nameText.setText(thisCourt.getName());
+        mailText.setText(thisCourt.getMail());
+        phoneText.setText(thisCourt.getPhoneNumber());
+        beginText.setText(thisCourt.getBegin() + ":00");
+        endText.setText(thisCourt.getEnd() + ":00");
+        fieldsText.setText(thisCourt.getFieldNumber().toString());
+        priceText.setText("€ " + thisCourt.getPrice() + ".00");
     }
 }
