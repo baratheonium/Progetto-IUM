@@ -10,11 +10,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;//test
+import java.util.List;//test
+
 public class LoginActivity extends AppCompatActivity {
     Button login;
     EditText username, password;
     TextView error, register;
     Boolean notExisting;
+    Boolean wrongPass;
+
+    //Variabili test DB
+    public DBHandler db = new DBHandler(this);
+    public List<User> userL = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +35,20 @@ public class LoginActivity extends AppCompatActivity {
         error = (TextView) findViewById(R.id.errorText);
         register = (TextView) findViewById(R.id.registerLink);
 
-        //
+        //Setto dei Court e User di default (test)
         Court.setDefaultCourtList();
         User.getDefaultUser();
+
+        //Inserimento in db di User di default
+        User user = new User();
+        user.setDefaultUserList();
+        for(User u: User.userList){
+            db.insertUser(u);
+        }
+        for(int i=1; i<4; i++){
+            userL.add(db.selectUser("admin" + i));
+        }
+        //
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,8 +63,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 error.setVisibility(View.GONE);
                 notExisting = true;
+                wrongPass = true;
 
-                for(User u: User.userList) {
+                //Controllo Username e Password
+                for(User u: userL) { //userL invece di User.userList (test)
                     if (username.getText().toString().equals(u.getUsername())){
                         if(password.getText().toString().equals(u.getPassword())){
                             Intent h = new Intent(LoginActivity.this, HomepageActivity.class);
@@ -54,7 +75,13 @@ public class LoginActivity extends AppCompatActivity {
                             notExisting = false;
                         }
                         else {
-                            error.setText("Password errata!");
+                            error.setText("Combinazione username o password errata!");
+                            error.setTextColor(Color.RED);
+                            error.setVisibility(View.VISIBLE);
+                            notExisting = false;
+                        }
+                        if(password.getText().toString().isEmpty()){
+                            error.setText("Hai dimenticato la password!");
                             error.setTextColor(Color.RED);
                             error.setVisibility(View.VISIBLE);
                         }
@@ -66,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     error.setTextColor(Color.RED);
                     error.setVisibility(View.VISIBLE);
                 }
+
             }
         });
     }

@@ -2,6 +2,24 @@
 <items version="2" >
 
     <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\9eb5dfa0a1bd0a893c15cc447c58c0d57edbd49c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_181160250170d153a357ea74d2746e961f8d9efd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\d6272a343434db09469129707f059a5bd8429971\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_16a5a42af093c5250070775c8fbb4748b085cdd4.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\utente\.android\build-cache\9eb5dfa0a1bd0a893c15cc447c58c0d57edbd49c\output\jars\classes.jar"
         jumboMode="true"
@@ -29,6 +47,15 @@
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_0e02add553f7cd42e04970ae87c9061d5c4ff31b\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\6f5331c97e73541e85187007b6ed36903fdd3aa7\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_28dc85cefa149ab6154479c6f7066ccdbf790f11.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\utente\.android\build-cache\656a3baf352cde8506767f8e3108af9e90953831\output\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
@@ -38,6 +65,15 @@
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_dcb060834d54b6d769d78ad414c223035dba729a\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\90c5f0018958c56750e061fb090b975dad3e2e6d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_ae5b3734dc96613fa70fbcffee53e19aa24147ec.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\utente\.android\build-cache\6f5331c97e73541e85187007b6ed36903fdd3aa7\output\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
@@ -45,6 +81,24 @@
         revision="25.0.0"
         sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_28dc85cefa149ab6154479c6f7066ccdbf790f11\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\656a3baf352cde8506767f8e3108af9e90953831\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_dcb060834d54b6d769d78ad414c223035dba729a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\c0b10975c197ae456ed54ea57ccb5e7ef96943e0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_24ad7bc7a398ebdd613d99c452ba0094b66e98cd.jar" />
     </item>
     <item
         is-multidex="true"
@@ -83,6 +137,24 @@
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f7757cb72e5df7c8350e5d76927f95129ace518a\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\881f332fd4065b7bfd87ad24b394e5f6563676c8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_f7757cb72e5df7c8350e5d76927f95129ace518a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\ebe26ad381e893fd23ce5145cf81e4c9b6d6b488\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_ed21cc91732a8af63bccf307cb401ac39a683e62.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\utente\.android\build-cache\ebe26ad381e893fd23ce5145cf81e4c9b6d6b488\output\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
@@ -101,6 +173,15 @@
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5cdf60c824f114bbd680836829a33f9113e3092a\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\utente\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_f04e633d9b7652a1efb9a77a42e3a9cb5f33b8da.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\utente\.android\build-cache\3d9fdbb1ccd64b24017dea747084554254b8fb32\output\jars\classes.jar"
         jumboMode="true"
@@ -110,6 +191,15 @@
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_38848b3d47078e7af692a8f3246dbabe193759d4\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\ebe26ad381e893fd23ce5145cf81e4c9b6d6b488\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_5cdf60c824f114bbd680836829a33f9113e3092a.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\utente\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
         jumboMode="true"
@@ -117,6 +207,24 @@
         revision="25.0.0"
         sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_f04e633d9b7652a1efb9a77a42e3a9cb5f33b8da\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\3d9fdbb1ccd64b24017dea747084554254b8fb32\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_38848b3d47078e7af692a8f3246dbabe193759d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\6f5331c97e73541e85187007b6ed36903fdd3aa7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_8f75d72f628f7c9036273404384878e8f1a7a57e.jar" />
     </item>
     <item
         is-multidex="true"
@@ -137,6 +245,15 @@
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ae0801eb0f06625f40b26453d468a98b0161c00f\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\b0e62b6e422c2bfa02ad446b6420b1101c678d97\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_ae0801eb0f06625f40b26453d468a98b0161c00f.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\utente\.android\build-cache\2231b55f2396543354c8408e3a9b2c89d613c920\output\jars\classes.jar"
         jumboMode="true"
@@ -146,6 +263,24 @@
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fe64f511c8591689c39e00c38ca2b64c92338d66\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\9eb5dfa0a1bd0a893c15cc447c58c0d57edbd49c\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_cf34e4935c237a33ff5fecce7467f3bdce56ce5c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\2231b55f2396543354c8408e3a9b2c89d613c920\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_fe64f511c8591689c39e00c38ca2b64c92338d66.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\utente\.android\build-cache\656a3baf352cde8506767f8e3108af9e90953831\output\jars\classes.jar"
         jumboMode="true"
@@ -153,6 +288,15 @@
         revision="25.0.0"
         sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fd09dce56672bca202be8a57ff69c2970e00bfe3\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\3d9fdbb1ccd64b24017dea747084554254b8fb32\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_01b6aa63d0b18ae65efbdd9c43eefd48c021557c.jar" />
     </item>
     <item
         is-multidex="true"
@@ -171,6 +315,24 @@
         revision="25.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="C:\Users\utente\Desktop\Download\ium2016-master\Progetto_IUM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9cd50c03ef4cd5b9923db82a0a6caf18a21ef47d\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\b2f1324edf45424cf33389069085238cef537fd8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_9cd50c03ef4cd5b9923db82a0a6caf18a21ef47d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\utente\.android\build-cache\656a3baf352cde8506767f8e3108af9e90953831\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Users\utente\Desktop\Progetto\Progetto-IUM\app\build\intermediates\pre-dexed\debug\classes_fd09dce56672bca202be8a57ff69c2970e00bfe3.jar" />
     </item>
     <item
         is-multidex="true"

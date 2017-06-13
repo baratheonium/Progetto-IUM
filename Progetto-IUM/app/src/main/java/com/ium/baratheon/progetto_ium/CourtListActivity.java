@@ -12,6 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.database.Cursor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CourtListActivity extends AppCompatActivity {
 
@@ -20,6 +24,10 @@ public class CourtListActivity extends AppCompatActivity {
     private ImageView drawerButton;
     private TextView nameTextView, mailTextView;
     private User u;
+    //Variabili per test DB
+    public DBHandler db = new DBHandler(this);
+    public List<Court> courtL = new ArrayList<Court>();
+    Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +36,26 @@ public class CourtListActivity extends AppCompatActivity {
 
         u = (User) getIntent().getSerializableExtra("user");
 
+        //Inserimento in db di Court di default
+        Court court = new Court();
+        court.setDefaultCourtList();
+        for(Court c: Court.courtList){
+            db.insertCourt(c);
+        }
+        //
+        //cursor = db.getAllCourts();
+
+        for(int i=1; i<6; i++){
+            courtL.add(db.selectCourt(i));
+        }
+
+
+
+        //
+
+        //Modificato per il test del DB
         ArrayAdapter<Court> courtAdapter = new CourtArrayAdapter(this, R.layout.listview, R.id.row, u, Court.courtList);
+        //ArrayAdapter<Court> courtAdapter = new CourtArrayAdapter(this, R.layout.listview, R.id.row, u, Court.courtList);
         ListView listView = (ListView) findViewById(R.id.courtList);
         listView.setAdapter(courtAdapter);
 

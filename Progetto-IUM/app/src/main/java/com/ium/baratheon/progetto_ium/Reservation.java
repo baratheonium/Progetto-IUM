@@ -17,6 +17,10 @@ public class Reservation implements Serializable{
     private int end;
     private Court court;
 
+    public Reservation(){
+
+    }
+
     public Reservation(Calendar day, int begin, int end, Court court){
         this.day = day;
         this.begin = begin;

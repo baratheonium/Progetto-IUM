@@ -56,6 +56,15 @@ class User implements Serializable{
         userList.add(this);
     }
 
+    public static void setDefaultUserList(){
+        if(userList == null) {
+            new User("admin1", "admin1", "Admin1", "Admin1", "admin1@admin.it", 21, null);
+            new User("admin2", "admin2", "Admin2", "Admin2", "admin2@admin.it", 22, null);
+            new User("admin3", "admin3", "Admin3", "Admin3", "admin3@admin.it", 23, null);
+        }
+
+    }
+
     public static User getDefaultUser(){
         User u = new User("admin", "admin", "Admin", "Admin", "admin@admin.it", 22, null);
         Calendar cal = Calendar.getInstance();

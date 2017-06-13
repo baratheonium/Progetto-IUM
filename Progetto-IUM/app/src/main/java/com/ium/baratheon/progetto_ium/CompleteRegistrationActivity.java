@@ -17,6 +17,7 @@ public class CompleteRegistrationActivity extends AppCompatActivity {
     TextView editPic, nameRecap, ageRecap, mailRecap, usernameRecap;
     FloatingActionButton confirmButton;
     ImageView proPic;
+    DBHandler db = new DBHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class CompleteRegistrationActivity extends AppCompatActivity {
                         ((BitmapDrawable)proPic.getDrawable()).getBitmap());
 
                 //Inserimento nel DB?
+                db.insertUser(u);
 
                 Toast.makeText(getApplicationContext(), "Utente registrato con successo!", Toast.LENGTH_SHORT).show();
 
