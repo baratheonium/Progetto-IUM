@@ -51,7 +51,7 @@ public class HomepageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         //CAMBIARE RIFERIMENTO ALL'UTENTE DI SESSIONE
-        u = (User) getIntent().getSerializableExtra("user");
+        u = Session.getInstance(getApplicationContext()).getUser();
 
         reservationAdapter = new ArrayAdapter<Reservation>(this, R.layout.row, u.getReservation());
         listView = (ListView) findViewById(R.id.reservationList);
@@ -142,20 +142,25 @@ public class HomepageActivity extends AppCompatActivity {
                     new NavigationView.OnNavigationItemSelectedListener() {
                         @Override
                         public boolean onNavigationItemSelected(MenuItem menuItem) {
+                            Intent h;
+
                             switch (menuItem.getItemId()) {
                                 case R.id.action_home:
                                     break;
                                 case R.id.action_viewCourt:
-                                    Intent h = new Intent(HomepageActivity.this, CourtListActivity.class);
-                                    h.putExtra("user", u);
+                                    h = new Intent(HomepageActivity.this, CourtListActivity.class);
                                     HomepageActivity.this.startActivity(h);
+                                    finish();
                                     break;
                                 case R.id.action_settings:
                                    // Intent g = new Intent(HomepageActivity.this, Main2Activity.class);
                                    // HomepageActivity.this.startActivity(g);
                                     break;
                                 case R.id.action_logout:
-                                    //invalidare la sessione
+                                    Session.getInstance(getApplicationContext()).removePrefs();
+                                    h = new Intent(HomepageActivity.this, LoginActivity.class);
+                                    HomepageActivity.this.startActivity(h);
+                                    finish();
                                     break;
                             }
 
@@ -184,7 +189,6 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent h = new Intent(HomepageActivity.this, NewReservationActivity.class);
-                h.putExtra("user", u);
                 HomepageActivity.this.startActivity(h);
             }
         });

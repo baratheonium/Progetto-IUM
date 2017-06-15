@@ -1,68 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ium.baratheon.progetto_ium.LoginActivity">
+    tools:context="com.ium.baratheon.progetto_ium.MainActivity"
+    android:background="@color/colorPrimary">
 
-    <Button
-        android:text="@string/login"
-        android:layout_width="90dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/passwordInput"
-        android:layout_alignRight="@+id/passwordInput"
-        android:layout_alignEnd="@+id/passwordInput"
-        android:layout_marginTop="24dp"
-        android:id="@+id/loginButton"
-        android:background="@drawable/login_button"
-        android:textColor="@color/white"/>
 
-    <TextView
-        android:text="@string/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/registerLink"
-        android:textSize="18sp"
-        android:layout_alignBaseline="@+id/loginButton"
-        android:layout_alignBottom="@+id/loginButton"
-        android:layout_alignLeft="@+id/passwordInput"
-        android:layout_alignStart="@+id/passwordInput"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/user"
-        android:ems="10"
-        android:id="@+id/usernameInput"
-        android:layout_marginBottom="11dp"
-        android:layout_above="@+id/passwordInput"
-        android:layout_centerHorizontal="true"
-        android:width="250dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passwordInput"
-        android:text="@string/user"
-        android:width="250dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/futsal_icon_home"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="172dp"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
-        android:id="@+id/errorText"
-        android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

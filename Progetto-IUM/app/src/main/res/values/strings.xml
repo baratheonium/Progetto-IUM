@@ -60,4 +60,10 @@
     <string name="errorPass">Il campo Password non può essere vuoto</string>
 
     <string name="favorites">Vista preferiti</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_main">MainActivity</string>
 </resources>

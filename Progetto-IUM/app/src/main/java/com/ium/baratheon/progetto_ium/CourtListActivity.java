@@ -64,7 +64,6 @@ public class CourtListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent h = new Intent(CourtListActivity.this, CourtDetailActivity.class);
                 h.putExtra("thisCourt", Court.courtList.get(position));
-                h.putExtra("user", u);
                 CourtListActivity.this.startActivity(h);
             }
         });
@@ -77,11 +76,13 @@ public class CourtListActivity extends AppCompatActivity {
                     new NavigationView.OnNavigationItemSelectedListener() {
                         @Override
                         public boolean onNavigationItemSelected(MenuItem menuItem) {
+                            Intent h;
+
                             switch (menuItem.getItemId()) {
                                 case R.id.action_home:
-                                    Intent h = new Intent(CourtListActivity.this, HomepageActivity.class);
-                                    h.putExtra("user", u);
+                                    h = new Intent(CourtListActivity.this, HomepageActivity.class);
                                     CourtListActivity.this.startActivity(h);
+                                    finish();
                                     break;
                                 case R.id.action_viewCourt:
                                     break;
@@ -89,7 +90,10 @@ public class CourtListActivity extends AppCompatActivity {
                                     //activity impostazioni
                                     break;
                                 case R.id.action_logout:
-                                    //invalidare la sessione
+                                    Session.getInstance(getApplicationContext()).removePrefs();
+                                    h = new Intent(CourtListActivity.this, LoginActivity.class);
+                                    CourtListActivity.this.startActivity(h);
+                                    finish();
                                     break;
                             }
 

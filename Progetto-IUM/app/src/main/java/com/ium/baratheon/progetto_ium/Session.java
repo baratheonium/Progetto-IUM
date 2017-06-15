@@ -7,10 +7,11 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 
 /**
- * Created by utente on 25/05/2017.
+ * Created by Riccardo Locci on 15/06/2017.
+ *
  */
 
-public class Session {
+class Session {
     private static Session instance;
     private SharedPreferences prefs;
 
@@ -18,47 +19,55 @@ public class Session {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public static Session getInstance(Context context){
+    static Session getInstance(Context context){
         if (instance == null){
             instance = new Session(context);
         }
         return instance;
     }
 
-    public void setPrefs(String username, String password, User user){
+    void setPrefs(String username, String password, User user){
         this.setUsername(username);
         this.setPassword(password);
         this.setUser(user);
     }
 
-    public void setUsername(String username) {
-        prefs.edit().putString("username", username).commit();
+    private void setUsername(String username) {
+        prefs.edit().putString("username", username).apply();
     }
 
-    public String getUsername() {
+    String getUsername() {
         return prefs.getString("username","");
     }
 
     public void removePrefs(){
-        prefs.edit().clear().commit();
+        prefs.edit().clear().apply();
     }
 
-    public void setPassword(String password){
-        prefs.edit().putString("password", password).commit();
+    private void setPassword(String password){
+        prefs.edit().putString("password", password).apply();
     }
 
-    public String getPassword() {
+    String getPassword() {
         return prefs.getString("password","");
     }
 
     public void setUser(User user){
         Gson gson = new Gson();
         String jsonUser = gson.toJson(user);
-        prefs.edit().putString("user", jsonUser);
+        prefs.edit().putString("user", jsonUser).apply();
     }
 
     public User getUser(){
         Gson gson = new Gson();
-        return gson.fromJson(prefs.getString("password", ""), User.class);
+        return gson.fromJson(prefs.getString("user", ""), User.class);
+    }
+
+    public SharedPreferences getPrefs(){
+        return this.prefs;
+    }
+
+    public Boolean hasPrefs(){
+        return this.prefs.contains("username") && this.prefs.contains("password") && this.prefs.contains("user");
     }
 }

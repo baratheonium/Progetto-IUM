@@ -22,12 +22,11 @@ public class LoginActivity extends AppCompatActivity {
 
     //Variabili test DB
     public DBHandler db = new DBHandler(this);
-    public List<User> userL = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         login = (Button) findViewById(R.id.loginButton);
         username = (EditText) findViewById(R.id.usernameInput);
@@ -40,13 +39,10 @@ public class LoginActivity extends AppCompatActivity {
         User.getDefaultUser();
 
         //Inserimento in db di User di default
-        User user = new User();
-        user.setDefaultUserList();
+        User.setDefaultUserList();
+
         for(User u: User.userList){
             db.insertUser(u);
-        }
-        for(int i=1; i<4; i++){
-            userL.add(db.selectUser("admin" + i));
         }
         //
 
@@ -66,24 +62,25 @@ public class LoginActivity extends AppCompatActivity {
                 wrongPass = true;
 
                 //Controllo Username e Password
-                for(User u: userL) { //userL invece di User.userList (test)
-                    if (username.getText().toString().equals(u.getUsername())){
-                        if(password.getText().toString().equals(u.getPassword())){
-                            Intent h = new Intent(LoginActivity.this, HomepageActivity.class);
-                            h.putExtra("user", u);
-                            LoginActivity.this.startActivity(h);
-                            notExisting = false;
-                        }
-                        else {
-                            error.setText("Combinazione username o password errata!");
-                            error.setTextColor(Color.RED);
-                            error.setVisibility(View.VISIBLE);
-                            notExisting = false;
-                        }
-                        if(password.getText().toString().isEmpty()){
-                            error.setText("Hai dimenticato la password!");
-                            error.setTextColor(Color.RED);
-                            error.setVisibility(View.VISIBLE);
+                for(User u: User.userList) { //userL invece di User.userList (test)
+                    if(u!=null) {
+                        if (username.getText().toString().equals(u.getUsername())) {
+                            if (password.getText().toString().equals(u.getPassword())) {
+                                Intent h = new Intent(LoginActivity.this, HomepageActivity.class);
+                                Session.getInstance(getApplicationContext()).setPrefs(username.getText().toString(), password.getText().toString(), u);
+                                LoginActivity.this.startActivity(h);
+                                notExisting = false;
+                            } else {
+                                error.setText("Combinazione username o password errata!");
+                                error.setTextColor(Color.RED);
+                                error.setVisibility(View.VISIBLE);
+                                notExisting = false;
+                            }
+                            if (password.getText().toString().isEmpty()) {
+                                error.setText("Hai dimenticato la password!");
+                                error.setTextColor(Color.RED);
+                                error.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
                 }

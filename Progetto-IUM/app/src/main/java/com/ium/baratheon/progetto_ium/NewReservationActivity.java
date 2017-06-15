@@ -47,30 +47,35 @@ public class NewReservationActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerView = (NavigationView) findViewById(R.id.nav_view);
 
-        u = (User) getIntent().getSerializableExtra("user");
+        u = Session.getInstance(getApplicationContext()).getUser();
 
         if (mDrawerView != null) {
             mDrawerView.setNavigationItemSelectedListener(
                     new NavigationView.OnNavigationItemSelectedListener() {
                         @Override
                         public boolean onNavigationItemSelected(MenuItem menuItem) {
+                            Intent h;
+
                             switch (menuItem.getItemId()) {
                                 case R.id.action_home:
-                                    Intent h = new Intent(NewReservationActivity.this, HomepageActivity.class);
-                                    h.putExtra("user", u);
+                                    h = new Intent(NewReservationActivity.this, HomepageActivity.class);
                                     NewReservationActivity.this.startActivity(h);
+                                    finish();
                                     break;
                                 case R.id.action_viewCourt:
                                     h = new Intent(NewReservationActivity.this, CourtListActivity.class);
-                                    h.putExtra("user", u);
                                     NewReservationActivity.this.startActivity(h);
+                                    finish();
                                     break;
                                 case R.id.action_settings:
                                     // Intent g = new Intent(HomepageActivity.this, Main2Activity.class);
                                     // HomepageActivity.this.startActivity(g);
                                     break;
                                 case R.id.action_logout:
-                                    //invalidare la sessione
+                                    Session.getInstance(getApplicationContext()).removePrefs();
+                                    h = new Intent(NewReservationActivity.this, LoginActivity.class);
+                                    NewReservationActivity.this.startActivity(h);
+                                    finish();
                                     break;
                             }
 
@@ -266,7 +271,6 @@ public class NewReservationActivity extends AppCompatActivity {
                 if(!errorFlag){
                     Intent h = new Intent(NewReservationActivity.this, ReservationSearchResultActivity.class);
 
-                    h.putExtra("user", u);
                     h.putExtra("courtName", courtNameText.getText().toString());
                     h.putExtra("day", dayText.getText().toString());
                     h.putExtra("start", startText.getText().toString());

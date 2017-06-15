@@ -14,13 +14,8 @@
         android:theme="@style/MyTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="EasyCourt">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="EasyCourt"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomepageActivity"
             android:label="Le tue prenotazioni"
@@ -41,7 +36,16 @@
         <activity
             android:name=".NewReservationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ReservationSearchResultActivity"></activity>
+        <activity android:name=".ReservationSearchResultActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.TransparentStatusBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
