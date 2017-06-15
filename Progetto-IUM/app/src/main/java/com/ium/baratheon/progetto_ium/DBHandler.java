@@ -242,7 +242,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return court;
     }
 
-    //Estrae dalla tablla Court la riga con id -> ID e crea un Court corrispondente
+    //Estrae dalla tabella Court la riga con id -> coutID e crea una Reservation corrispondente
     public Reservation selectReservation(int courtId) {
         String query = "Select * FROM " + RESERVATION_TABLE_NAME + " WHERE " + RESERVATION_COLUMN_COURT + " =  \"" + courtId + "\"";
 
@@ -258,7 +258,7 @@ public class DBHandler extends SQLiteOpenHelper {
             reservation.setBegin(Integer.parseInt(cursor.getString(0)));
             reservation.setEnd(Integer.parseInt(cursor.getString(1)));
             //reservation.setDay(cursor.getString(2));
-            //reservation.setCourt(cursor.getString(3));
+            reservation.setCourt(reservation.reservationList.get(Integer.parseInt(cursor.getString(3))).getCourt());
 
             db.close();
 
@@ -332,6 +332,30 @@ public class DBHandler extends SQLiteOpenHelper {
         return userList;
     }
 
+    public List<Reservation> getUserReservation(String username){
+        List<Reservation> reservationList = new ArrayList<>();
+        Reservation reservation = new Reservation();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT * FROM " + RESERVATION_TABLE_NAME, null );
+        if (res.moveToFirst()) {
+            res.moveToFirst();
+
+            //reservation.setDay(res.getString(0));
+            reservation.setEnd(Integer.parseInt(res.getString(1)));
+            reservation.setBegin(Integer.parseInt(res.getString(2)));
+            //reservation.setCourt(res.getString(3));
+
+            reservationList.add(reservation);
+
+            db.close();
+
+        } else {
+            reservation = null;
+        }
+        //System.out.println(res.getCount());
+        return reservationList;
+    }
+
     //Restituisce un Cursor contenente tutte le righe dell tabella Court
     public Cursor getAllCourt() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -387,10 +411,10 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.delete(COURT_TABLE_NAME, COURT_COLUMN_ID + " = ? ", new String[] { Integer.toString(id) });
     }
 
-    //Elimina dal db lo User con ID -> id
-    public Integer deleteUser(Integer id) {
+    //Elimina dal db lo User con username -> id
+    public Integer deleteUser(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(USER_TABLE_NAME, COURT_COLUMN_ID + " = ? ", new String[] { Integer.toString(id) });
+        return db.delete(USER_TABLE_NAME, USER_COLUMN_USERNAME + " = ? ", new String[] { username });
     }
 
     //Elimina dal db la Reservation con ID -> id

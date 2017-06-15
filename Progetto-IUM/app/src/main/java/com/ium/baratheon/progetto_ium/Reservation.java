@@ -5,7 +5,9 @@ import android.graphics.Canvas;
 import android.view.View;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by Riccardo Locci on 30/01/2017.
@@ -15,10 +17,14 @@ public class Reservation implements Serializable{
     private Calendar day;
     private int begin;
     private int end;
+    private int resID;
     private Court court;
+    static List<Reservation> reservationList;
 
     public Reservation(){
-
+        if(reservationList == null){
+            reservationList = new ArrayList<Reservation>();
+        }
     }
 
     public Reservation(Calendar day, int begin, int end, Court court){
@@ -26,6 +32,10 @@ public class Reservation implements Serializable{
         this.begin = begin;
         this.end = end;
         this.court = court;
+        if(reservationList==null){
+            reservationList = new ArrayList<>();
+        }
+        reservationList.add(this);
     }
 
     public String toString(){
@@ -58,11 +68,7 @@ public class Reservation implements Serializable{
         this.end = end;
     }
 
-    public Court getCourt() {
-        return court;
-    }
+    public Court getCourt() { return court; }
 
-    public void setCourt(Court court) {
-        this.court = court;
-    }
+    public void setCourt(Court court) { this.court = court; }
 }

@@ -15,7 +15,7 @@ public class Court implements Serializable{
     private String name;
     private String mail;
     private String phoneNumber;
-    private int ID;
+    private int courtID;
     private Integer begin;
     private Integer end;
     private Integer fieldNumber;
@@ -33,15 +33,15 @@ public class Court implements Serializable{
         this.name = name;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
-        this.begin = (begin>=0 && begin<=24) ? begin : 15;
-        this.end = (end>=0 && end<=24 && end>begin) ? end : 16;
+        this.begin = (begin >= 0 && begin <= 24) ? begin : 15;
+        this.end = (end >= 0 && end <= 24 && end > begin) ? end : 16;
         this.fieldNumber = fieldNumber;
         this.price = price;
         if(courtList == null){
             courtList = new ArrayList<Court>();
         }
         courtList.add(this);
-        this.ID = courtList.size();
+        this.courtID = courtList.size();
     }
 
     public static void setDefaultCourtList(){
@@ -124,10 +124,10 @@ public class Court implements Serializable{
     }
 
     public int getID() {
-        return ID;
+        return courtID;
     }
 
-    public void setID(int ID) { this.ID = ID; }
+    public void setID(int ID) { this.courtID = ID; }
 
     public Integer getFieldNumber() {
         return fieldNumber;

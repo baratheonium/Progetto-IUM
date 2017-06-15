@@ -22,16 +22,13 @@ class User implements Serializable{
     private String email;
     private int age;
     private Bitmap profilePic;
-    private List<Reservation> reservation;
-    private List<Boolean> favorites;
+    private List<Integer> reservation; //private List<Integer> reservation;
+    private List<Integer> favorites; //private List<Boolean> favorites;
     static List<User> userList;
 
     public User(){
         this.reservation = new ArrayList<>();
         this.favorites = new ArrayList<>();
-        for(Court c: Court.courtList){
-            favorites.add(false);
-        }
         if(userList==null){
             userList = new ArrayList<>();
         }
@@ -47,9 +44,6 @@ class User implements Serializable{
         this.profilePic = profilePic;
         this.reservation = new ArrayList<>();
         this.favorites = new ArrayList<>();
-        for(Court c: Court.courtList){
-            favorites.add(false);
-        }
         if(userList==null){
             userList = new ArrayList<>();
         }
@@ -70,9 +64,9 @@ class User implements Serializable{
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR + 2016, Calendar.MONTH, Calendar.DAY_OF_MONTH);
 
-        for(Court c: Court.courtList) {
+        /*for(Court c: Court.courtList) {
             u.reservation.add(new Reservation(cal, 19, 20, c));
-        }
+        }*/
 
         return u;
     }
@@ -117,19 +111,15 @@ class User implements Serializable{
         this.age = age;
     }
 
-    public List<Reservation> getReservation() {
-        return reservation;
-    }
+    //public List<Reservation> getReservation() { return reservation; }
 
-    public void setReservation(List<Reservation> reservation) {
-        this.reservation = reservation;
-    }
+    //public void setReservation(List<Reservation> reservation) { this.reservation = reservation; }
 
-    public List<Boolean> getFavorites() {
+    public List<Integer> getFavorites() {
         return favorites;
     }
 
-    public void setFavorites(List<Boolean> favorites) {
+    public void setFavorites(List<Integer> favorites) {
         this.favorites = favorites;
     }
 
