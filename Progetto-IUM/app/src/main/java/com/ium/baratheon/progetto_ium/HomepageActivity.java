@@ -53,7 +53,12 @@ public class HomepageActivity extends AppCompatActivity {
         //CAMBIARE RIFERIMENTO ALL'UTENTE DI SESSIONE
         u = Session.getInstance(getApplicationContext()).getUser();
 
-        reservationAdapter = new ArrayAdapter<Reservation>(this, R.layout.row, u.getReservation());
+        final List<Reservation> resList = new ArrayList<>();
+        for(Integer i: u.getReservation()){
+            resList.add(Reservation.get(i));
+        }
+
+        reservationAdapter = new ArrayAdapter<Reservation>(this, R.layout.row, resList);
         listView = (ListView) findViewById(R.id.reservationList);
         listView.setAdapter(reservationAdapter);
 
@@ -73,7 +78,7 @@ public class HomepageActivity extends AppCompatActivity {
                     else {
                         selectedItemsNumber++;
                         selectedTextView.setText(selectedItemsNumber.toString());
-                        selectedItems.add(u.getReservation().get(position));
+                        selectedItems.add(resList.get(position));
                         listView.getChildAt(position - listView.getFirstVisiblePosition()).setBackgroundColor(Color.LTGRAY);
                     }
                 }
@@ -86,7 +91,7 @@ public class HomepageActivity extends AppCompatActivity {
                     selectionLayout.setVisibility(View.VISIBLE);
 
                     listView.getChildAt(position - listView.getFirstVisiblePosition()).setBackgroundColor(Color.LTGRAY);
-                    selectedItems.add(u.getReservation().get(position));
+                    selectedItems.add(resList.get(position));
                 }
 
                 if(selectedItemsNumber == 0){
@@ -104,7 +109,7 @@ public class HomepageActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(Iterator<Reservation> i = u.getReservation().iterator(); i.hasNext();){
+                for(Iterator<Reservation> i = resList.iterator(); i.hasNext();){
                     if(selectedItems.contains(i.next())){
                         i.remove();
                     }

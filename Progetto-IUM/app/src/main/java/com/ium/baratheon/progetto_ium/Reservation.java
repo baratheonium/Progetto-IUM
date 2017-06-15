@@ -17,7 +17,7 @@ public class Reservation implements Serializable{
     private Calendar day;
     private int begin;
     private int end;
-    private int resID;
+    private int ID;
     private Court court;
     static List<Reservation> reservationList;
 
@@ -71,4 +71,18 @@ public class Reservation implements Serializable{
     public Court getCourt() { return court; }
 
     public void setCourt(Court court) { this.court = court; }
+
+    public int getID(){
+        return this.ID;
+    }
+
+    public static Reservation get(int id){
+        for(Reservation r: reservationList){
+            if(r.ID == id){
+                return r;
+            }
+        }
+
+        return null;
+    }
 }

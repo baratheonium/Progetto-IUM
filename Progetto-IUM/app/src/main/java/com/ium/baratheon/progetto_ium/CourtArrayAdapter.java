@@ -32,7 +32,7 @@ public class CourtArrayAdapter<Court> extends ArrayAdapter {
             v = vi.inflate(R.layout.listview, null);
         }
 
-        Court item = items.get(position);
+        final Court item = items.get(position);
 
         if (item != null) {
             final ImageView image = (ImageView) v.findViewById(R.id.icon);
@@ -45,13 +45,19 @@ public class CourtArrayAdapter<Court> extends ArrayAdapter {
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(true){
+                        System.out.print(item);
+                    }
+                    /*
                     if(user.getFavorites().get(position)) {
                         image.setImageResource(R.drawable.star_off);
                         user.getFavorites().set(position, false);
-                    }
+                    }*/
                     else{
                         image.setImageResource(R.drawable.star_on);
+                        /***
                         user.getFavorites().set(position, true);
+                         ***/
                     }
                 }
             });
