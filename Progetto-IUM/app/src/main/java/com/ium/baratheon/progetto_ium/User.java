@@ -111,17 +111,21 @@ class User implements Serializable{
         this.age = age;
     }
 
-    //public List<Reservation> getReservation() { return reservation; }
+    public List<Integer> getReservation() { return reservation; }
 
-    //public void setReservation(List<Reservation> reservation) { this.reservation = reservation; }
+    public void addReservation(int id) { this.reservation = reservation; }
+
+
 
     public List<Integer> getFavorites() {
         return favorites;
     }
 
-    public void setFavorites(List<Integer> favorites) {
-        this.favorites = favorites;
-    }
+    public void addFavorite(int id){ this.favorites.add(id); }
+
+    public void removeFavorite(int id){ this.favorites.remove(id); }
+
+    //public void setFavorites(List<Integer> favorites) { this.favorites = favorites; }
 
     public Bitmap getProfilePic() {
         return profilePic;
