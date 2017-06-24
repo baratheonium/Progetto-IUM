@@ -6,19 +6,19 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
-import android.widget.ImageView;
-import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayInputStream;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
-import android.app.Activity;
-
+import java.util.Locale;
 
 
 /**
+ *
  * Created by Tommaso on 20/04/2017.
  */
 
@@ -51,23 +51,33 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String USER_COLUMN_EMAIL = "email";
     private static final String USER_COLUMN_AGE = "age";
     private static final String USER_COLUMN_PROFILE_PIC = "profilePic";
-    private static final String USER_COLUMN_FAVORITES = "favorites";
-    private static final String USER_COLUMN_RESERVATION = "reservation";
 
     //Nome tabella Reservation
-    public static final String RESERVATION_TABLE_NAME = "reservation";
+    private static final String RESERVATION_TABLE_NAME = "reservation";
     //Nome colonne Reservation
+    private static final String RESERVATION_COLUMN_ID = "_id";
     private static final String RESERVATION_COLUMN_DAY = "day";
     private static final String RESERVATION_COLUMN_BEGIN = "begin";
     private static final String RESERVATION_COLUMN_END = "end";
     private static final String RESERVATION_COLUMN_COURT = "court";
+    private static final String RESERVATION_COLUMN_USER = "user";
+
+    //Nome tabella Favorites
+    private static final String FAVORITES_TABLE_NAME = "favorites";
+    //Nome colonne Favorites
+    private static final String FAVORITES_COLUMN_USER = "user";
+    private static final String FAVORITES_COLUMN_COURT = "court";
+
+    private static DBHandler db;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        db = this;
     }
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+        db = this;
     }
 
     //Stringa creazione tabella Court
@@ -76,12 +86,21 @@ public class DBHandler extends SQLiteOpenHelper {
             + COURT_COLUMN_NAME + " TEXT,"
             + COURT_COLUMN_MAIL + " TEXT,"
             + COURT_COLUMN_ID + " INTEGER PRIMARY KEY,"
-            + COURT_COLUMN_PHONE_NUMBER + " INTEGER,"
-            + COURT_COLUMN_BEGIN + " TIME,"
-            + COURT_COLUMN_END + " TIME,"
+            + COURT_COLUMN_PHONE_NUMBER + " TEXT,"
+            + COURT_COLUMN_BEGIN + " INTEGER,"
+            + COURT_COLUMN_END + " INTEGER,"
             + COURT_COLUMN_FIELD_NUMBER + " INTEGER,"
-            + COURT_COLUMN_PRICE + " INTEGER"
-            + COURT_COLUMN_COURT_PIC + " BLOB" + ")"; //BLOB?
+            + COURT_COLUMN_PRICE + " INTEGER, "
+            + COURT_COLUMN_COURT_PIC + " BLOB);"; //BLOB?
+
+    //Stringa inserimento di default Court
+    private static final String insert_default_courts =
+            "INSERT INTO " + COURT_TABLE_NAME +
+            " VALUES ('Pincopallino', 'pincopallino@yahoo.it', 1, '0123456789', 16, 23, 6, 35, null),\n" +
+            "('Sempronio', 'sempronio@yahoo.it', 2, '0123456789', 15, 22, 2, 40, null),\n" +
+            "('Caio', 'caio@yahoo.it', 3, '0123456789', 16, 24, 4, 25, null),\n" +
+            "('Gnegnegnegne', 'gnegnegnegne@yahoo.it', 4, '0123456789', 17, 24, 3, 30, null),\n" +
+            "('Lalalalala', 'lalalalala@yahoo.it', 5, '0123456789', 16, 23, 2, 30, null);";
 
     //Stringa creazione tabella User
     private static final String create_table_user
@@ -92,23 +111,51 @@ public class DBHandler extends SQLiteOpenHelper {
             + USER_COLUMN_SURNAME + " TEXT,"
             + USER_COLUMN_EMAIL + " TEXT,"
             + USER_COLUMN_AGE + " INTEGER,"
-            + USER_COLUMN_PROFILE_PIC + " BLOB,"
-            + USER_COLUMN_RESERVATION + " TEXT" + ")";
+            + USER_COLUMN_PROFILE_PIC + " BLOB)";
+
+    //Stringa inserimento di default User
+    private static final String insert_default_users =
+            "INSERT INTO " + USER_TABLE_NAME +
+            " VALUES ('admin', 'admin', 'Admin', 'Admin', 'admin@admin.it', 22, null),\n" +
+            "('admin1', 'admin1', 'Admin1', 'Admin1', 'admin1@admin.it', 21, null),\n" +
+            "('admin2', 'admin2', 'Admin2', 'Admin2', 'admin2@admin.it', 22, null),\n" +
+            "('admin3', 'admin3', 'Admin3', 'Admin3', 'admin3@admin.it', 23, null);\n";
 
     //Stringa creazione tabella Reservation
     private static final String create_table_reservation
-            = "CREATE TABLE " + RESERVATION_TABLE_NAME + "("
-            + RESERVATION_COLUMN_DAY + " TEXT,"
-            + RESERVATION_COLUMN_BEGIN + " TIME,"
-            + RESERVATION_COLUMN_END + " TIME,"
-            + RESERVATION_COLUMN_COURT + " INTEGER" + ")";
+            = "CREATE TABLE " + RESERVATION_TABLE_NAME + "( "
+            + RESERVATION_COLUMN_ID + " INTEGER PRIMARY KEY, "
+            + RESERVATION_COLUMN_DAY + " TEXT, "
+            + RESERVATION_COLUMN_BEGIN + " INTEGER, "
+            + RESERVATION_COLUMN_END + " INTEGER, "
+            + RESERVATION_COLUMN_COURT + " INTEGER, "
+            + RESERVATION_COLUMN_USER + " TEXT)";
 
+    //Stringa inserimento di default Reservation
+    private static final String insert_default_reservations =
+            "INSERT INTO " + RESERVATION_TABLE_NAME +
+            " VALUES (1, '2017-06-22', 19, 20, 1, 'admin'),\n" +
+            "(2, '2017-06-20', 19, 20, 2, 'admin'),\n" +
+            "(3, '2017-05-25', 19, 20, 3, 'admin'),\n" +
+            "(4, '2017-05-12', 19, 20, 4, 'admin'),\n" +
+            "(5, '2017-05-02', 19, 20, 5, 'admin');\n";
+
+    //Stringa creazione tabella Favorites
+    private static final String create_table_favorites
+            = "CREATE TABLE " + FAVORITES_TABLE_NAME + "("
+            + FAVORITES_COLUMN_USER + " TEXT,"
+            + FAVORITES_COLUMN_COURT + " INTEGER,"
+            + " UNIQUE(" + FAVORITES_COLUMN_USER + ", " + FAVORITES_COLUMN_COURT + "))";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(create_table_court);
+        db.execSQL(insert_default_courts);
         db.execSQL(create_table_user);
+        db.execSQL(insert_default_users);
         db.execSQL(create_table_reservation);
+        db.execSQL(insert_default_reservations);
+        db.execSQL(create_table_favorites);
     }
 
     @Override
@@ -117,6 +164,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + COURT_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + RESERVATION_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + FAVORITES_TABLE_NAME);
         // Ricrea le tabelle
         onCreate(db);
     }
@@ -469,4 +517,122 @@ public class DBHandler extends SQLiteOpenHelper {
         else return 1;
     }
 
+    public User authenticate(String username, String password){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c =  db.rawQuery( "SELECT * FROM " + USER_TABLE_NAME + " WHERE " +
+                USER_COLUMN_USERNAME + "=? AND " + USER_COLUMN_PASSWORD + " =?",
+                new String[]{username, password} );
+
+        if(!c.moveToNext()){
+            return null;
+        }
+
+        byte[] byteArray = c.getBlob(6);
+        Bitmap bm;
+        if(byteArray!=null) {
+            bm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        }
+        else{
+            bm = null;
+        }
+
+        Cursor c1 = db.rawQuery("SELECT " + RESERVATION_COLUMN_ID + " FROM " + RESERVATION_TABLE_NAME + " WHERE " +
+                RESERVATION_COLUMN_USER + "=?", new String[]{username});
+
+        List<Integer> reservationList = new ArrayList<>();
+
+        while(c1.moveToNext()){
+            reservationList.add(c1.getInt(0));
+        }
+
+        c1 = db.rawQuery("SELECT " + FAVORITES_COLUMN_COURT + " FROM " + FAVORITES_TABLE_NAME + " WHERE " +
+                FAVORITES_COLUMN_USER + "=?", new String[]{username});
+
+        List<Integer> favoritesList = new ArrayList<>();
+
+        while(c1.moveToNext()){
+            favoritesList.add(c1.getInt(0));
+        }
+
+        User user = new User(c.getString(0), c.getString(1), c.getString(2),
+                c.getString(3), c.getString(4), c.getInt(5), bm, reservationList, favoritesList);
+
+        return user;
+    }
+
+    public void setAllCourts(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT * FROM " + COURT_TABLE_NAME, null );
+
+        while(res.moveToNext()){
+            new Court(res.getString(0), res.getString(1), res.getInt(2), res.getString(3),
+                    res.getInt(4), res.getInt(5), res.getInt(6), res.getInt(7));
+        }
+    }
+
+    public void setAllReservations(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT * FROM " + RESERVATION_TABLE_NAME, null );
+
+        while(res.moveToNext()){
+            Court c = Court.getCourt(res.getInt(4));
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd", Locale.ITALIAN);
+            try {
+                cal.setTime(sdf.parse(res.getString(1)));
+            }
+            catch(ParseException e){
+
+            }
+            new Reservation(res.getInt(0), cal, res.getInt(2), res.getInt(3), c);
+        }
+    }
+
+    public void deleteFavorite(String username, Integer id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c =  db.rawQuery( "DELETE FROM " + FAVORITES_TABLE_NAME +
+                " WHERE " + FAVORITES_COLUMN_USER + "=? AND " + FAVORITES_COLUMN_COURT + "=?", new String[]{username, id.toString()});
+    }
+
+    public void insertFavorite(String username, Integer id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c =  db.rawQuery( "INSERT INTO " + FAVORITES_TABLE_NAME +
+                " VALUES(?,?)", new String[]{username, id.toString()});
+    }
+
+    void retrieveReservation(User u, List<Integer> deletedItems){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + RESERVATION_TABLE_NAME +
+                " WHERE " + RESERVATION_COLUMN_ID + " IN ( ";
+
+        for(Integer i: deletedItems){
+            query += i.toString() + ", ";
+        }
+
+
+        query = query.substring(0, query.length() - 1) + ") AND " + RESERVATION_COLUMN_USER + "=" + u.getUsername();
+
+        Cursor c =  db.rawQuery( query, new String[]{});
+
+        while(c.moveToNext()){
+            Court court = Court.getCourt(c.getInt(4));
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd", Locale.ITALIAN);
+            try {
+                cal.setTime(sdf.parse(c.getString(1)));
+            }
+            catch(ParseException e){
+                cal.setTime(new Date());
+            }
+            new Reservation(c.getInt(0), cal, c.getInt(2) , c.getInt(3), court);
+            u.addReservation(c.getInt(0));
+        }
+
+        c.close();
+    }
+
+    public static DBHandler getInstance(){
+        return db;
+    }
 }

@@ -1,6 +1,7 @@
 package com.ium.baratheon.progetto_ium;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,50 +13,26 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.database.Cursor;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class CourtListActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerView;
-    private ImageView drawerButton;
-    private TextView nameTextView, mailTextView;
-    private User u;
-    //Variabili per test DB
-    public DBHandler db = new DBHandler(this);
-    public List<Court> courtL = new ArrayList<Court>();
-    Cursor cursor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_court_list);
 
-        u = (User) getIntent().getSerializableExtra("user");
+        ImageView drawerButton;
+        TextView nameTextView, mailTextView;
 
-        //Inserimento in db di Court di default
-        Court court = new Court();
-        court.setDefaultCourtList();
-        for(Court c: Court.courtList){
-            db.insertCourt(c);
-        }
-        //
-        //cursor = db.getAllCourts();
-
-        for(int i=1; i<6; i++){
-            courtL.add(db.selectCourt(i));
-        }
-
-
-
-        //
+        User u = Session.getInstance(getApplicationContext()).getUser();
 
         //Modificato per il test del DB
-        ArrayAdapter<Court> courtAdapter = new CourtArrayAdapter(this, R.layout.listview, R.id.row, u, Court.courtList);
-        //ArrayAdapter<Court> courtAdapter = new CourtArrayAdapter(this, R.layout.listview, R.id.row, u, Court.courtList);
+        CourtArrayAdapter<Court> courtAdapter = new CourtArrayAdapter<>(this, R.layout.listview, R.id.row, u, Court.courtList);
         ListView listView = (ListView) findViewById(R.id.courtList);
         listView.setAdapter(courtAdapter);
 
@@ -75,7 +52,7 @@ public class CourtListActivity extends AppCompatActivity {
             mDrawerView.setNavigationItemSelectedListener(
                     new NavigationView.OnNavigationItemSelectedListener() {
                         @Override
-                        public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                             Intent h;
 
                             switch (menuItem.getItemId()) {

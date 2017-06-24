@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Logger;
-
 public class MainActivity extends AppCompatActivity {
+
+    private DBHandler db = new DBHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         Session session = Session.getInstance(this.getApplicationContext());
 
-        System.out.print("\n\n\n\n" + session.hasPrefs() + "\n\n\n\n\n");
-        System.out.print("\n\n\n\n" + session.getPrefs().getAll() + "\n\n\n\n\n");
+        Utility.setUp(db);
 
         if(session.hasPrefs() && (!session.getUsername().isEmpty() && !session.getPassword().isEmpty())) {
             Intent h = new Intent(MainActivity.this, HomepageActivity.class);

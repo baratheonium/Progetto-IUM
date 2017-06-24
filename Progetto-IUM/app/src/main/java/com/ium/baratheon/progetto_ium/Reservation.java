@@ -1,19 +1,17 @@
 package com.ium.baratheon.progetto_ium;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 /**
+ *
  * Created by Riccardo Locci on 30/01/2017.
  */
 
-public class Reservation implements Serializable{
+class Reservation implements Serializable{
     private Calendar day;
     private int begin;
     private int end;
@@ -21,13 +19,26 @@ public class Reservation implements Serializable{
     private Court court;
     static List<Reservation> reservationList;
 
-    public Reservation(){
+    Reservation(){
         if(reservationList == null){
-            reservationList = new ArrayList<Reservation>();
+            reservationList = new ArrayList<>();
         }
     }
 
-    public Reservation(Calendar day, int begin, int end, Court court){
+    Reservation(Calendar day, int begin, int end, Court court){
+        this.day = day;
+        this.begin = begin;
+        this.end = end;
+        this.court = court;
+        if(reservationList==null){
+            reservationList = new ArrayList<>();
+        }
+        this.ID = UUID.randomUUID().hashCode();
+        reservationList.add(this);
+    }
+
+    Reservation(int ID, Calendar day, int begin, int end, Court court){
+        this.ID = ID;
         this.day = day;
         this.begin = begin;
         this.end = end;
@@ -40,11 +51,12 @@ public class Reservation implements Serializable{
 
     public String toString(){
         return "\n\tCampo " + this.court.getName() +
-                "\n\n\tData: " + this.day.get(Calendar.DAY_OF_MONTH) + " - " + this.day.get(Calendar.MONTH) + " - " + this.day.get(Calendar.YEAR) +
+                "\n\n\tData: " + this.day.get(Calendar.DAY_OF_MONTH) + " - " +
+                this.day.get(Calendar.MONTH) + " - " + this.day.get(Calendar.YEAR) +
                 "\n\n\tDalle " + this.begin + " alle " + this.end + "\n";
     }
 
-    public Calendar getDay() {
+    Calendar getDay() {
         return day;
     }
 
@@ -56,7 +68,7 @@ public class Reservation implements Serializable{
         return begin;
     }
 
-    public void setBegin(int begin) {
+    void setBegin(int begin) {
         this.begin = begin;
     }
 
@@ -68,15 +80,15 @@ public class Reservation implements Serializable{
         this.end = end;
     }
 
-    public Court getCourt() { return court; }
+    Court getCourt() { return court; }
 
-    public void setCourt(Court court) { this.court = court; }
+    void setCourt(Court court) { this.court = court; }
 
-    public int getID(){
+    int getID(){
         return this.ID;
     }
 
-    public static Reservation get(int id){
+    static Reservation get(int id){
         for(Reservation r: reservationList){
             if(r.ID == id){
                 return r;

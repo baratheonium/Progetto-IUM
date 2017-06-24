@@ -1,17 +1,17 @@
 package com.ium.baratheon.progetto_ium;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * Created by Riccardo Locci on 30/01/2017.
  */
 
-public class Court implements Serializable{
+class Court implements Serializable{
     private String name;
     private String mail;
     private String phoneNumber;
@@ -23,13 +23,13 @@ public class Court implements Serializable{
     private Bitmap courtPic;  //Cambiato il tipo di courtpic da Image a Bitmap
     static List<Court> courtList;
 
-    public Court(){
+    Court(){
         if(courtList == null){
             courtList = new ArrayList<Court>();
         }
     }
 
-    public Court(String name, String mail, String phoneNumber, int begin, int end, int fieldNumber, int price){
+    Court(String name, String mail, String phoneNumber, int begin, int end, int fieldNumber, int price){
         this.name = name;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
@@ -44,14 +44,21 @@ public class Court implements Serializable{
         this.courtID = courtList.size();
     }
 
-    public static void setDefaultCourtList(){
-        if(courtList == null) {
-            new Court("Pincopallino", "pincopallino@yahoo.it", "0123456789", 16, 23, 6, 35);
-            new Court("Sempronio", "sempronio@yahoo.it", "0123456789", 15, 22, 2, 40);
-            new Court("Caio", "caio@yahoo.it", "0123456789", 16, 24, 4, 25);
-            new Court("Gnegnegnegne", "gnegnegnegne@yahoo.it", "0123456789", 17, 24, 3, 30);
-            new Court("Lalalalala", "lalalalala@yahoo.it", "0123456789", 16, 23, 2, 30);
+    Court(String name, String mail, int ID, String phoneNumber,
+                 int begin, int end, int fieldNumber, int price){
+        this.name = name;
+        this.mail = mail;
+        this.phoneNumber = phoneNumber;
+        this.begin = (begin >= 0 && begin <= 24) ? begin : 15;
+        this.end = (end >= 0 && end <= 24 && end > begin) ? end : 16;
+        this.fieldNumber = fieldNumber;
+        this.price = price;
+        if(courtList == null){
+            courtList = new ArrayList<Court>();
         }
+        this.courtID = ID;
+        this.courtPic = courtPic;
+        courtList.add(this);
     }
 
     public String toString(){
@@ -67,11 +74,11 @@ public class Court implements Serializable{
         this.name = name;
     }
 
-    public Integer getBegin() {
+    Integer getBegin() {
         return begin;
     }
 
-    public void setBegin(int begin) {
+    void setBegin(int begin) {
         this.begin = begin;
     }
 
@@ -99,41 +106,50 @@ public class Court implements Serializable{
         this.courtPic = courtPic;
     }
 
-    public String getMail() {
+    String getMail() {
         return mail;
     }
 
-    public void setMail(String mail) {
+    void setMail(String mail) {
         this.mail = mail;
     }
 
-    public Integer getPrice() {
+    Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    void setPrice(int price) {
         this.price = price;
     }
 
-    public String getPhoneNumber() {
+    String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getID() {
+    int getID() {
         return courtID;
     }
 
-    public void setID(int ID) { this.courtID = ID; }
+    void setID(int ID) { this.courtID = ID; }
 
-    public Integer getFieldNumber() {
+    Integer getFieldNumber() {
         return fieldNumber;
     }
 
-    public void setFieldNumber(Integer fieldNumber) {
+    void setFieldNumber(Integer fieldNumber) {
         this.fieldNumber = fieldNumber;
+    }
+
+    static Court getCourt(int ID){
+        for(Court c: courtList){
+            if(c.courtID==ID){
+                return c;
+            }
+        }
+        return null;
     }
 }

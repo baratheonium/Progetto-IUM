@@ -3,6 +3,7 @@ package com.ium.baratheon.progetto_ium;
 import java.util.Calendar;
 
 /**
+ *
  * Created by Riccardo Locci on 14/04/2017.
  **/
 
@@ -38,5 +39,10 @@ class Utility {
                 endMinute = Integer.parseInt(end.substring(3,5));
 
         return (startHour.equals(endHour) && startMinute > endMinute)  || startHour > endHour;
+    }
+
+    public static void setUp(DBHandler db){
+        db.setAllCourts();
+        db.setAllReservations();
     }
 }
