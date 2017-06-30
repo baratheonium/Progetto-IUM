@@ -29,7 +29,7 @@ public class CourtListActivity extends AppCompatActivity {
         ImageView drawerButton;
         TextView nameTextView, mailTextView;
 
-        User u = Session.getInstance(getApplicationContext()).getUser();
+        final User u = Session.getInstance(getApplicationContext()).getUser();
 
         //Modificato per il test del DB
         CourtArrayAdapter<Court> courtAdapter = new CourtArrayAdapter<>(this, R.layout.listview, R.id.row, u, Court.courtList);
@@ -39,6 +39,7 @@ public class CourtListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Session.getInstance(getApplicationContext()).setUser(u);
                 Intent h = new Intent(CourtListActivity.this, CourtDetailActivity.class);
                 h.putExtra("thisCourt", Court.courtList.get(position));
                 CourtListActivity.this.startActivity(h);
@@ -57,6 +58,7 @@ public class CourtListActivity extends AppCompatActivity {
 
                             switch (menuItem.getItemId()) {
                                 case R.id.action_home:
+                                    Session.getInstance(getApplicationContext()).setUser(u);
                                     h = new Intent(CourtListActivity.this, HomepageActivity.class);
                                     CourtListActivity.this.startActivity(h);
                                     finish();

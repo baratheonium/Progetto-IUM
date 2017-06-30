@@ -12,6 +12,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -134,11 +136,11 @@ public class DBHandler extends SQLiteOpenHelper {
     //Stringa inserimento di default Reservation
     private static final String insert_default_reservations =
             "INSERT INTO " + RESERVATION_TABLE_NAME +
-            " VALUES (1, '2017-06-22', 19, 20, 1, 'admin'),\n" +
-            "(2, '2017-06-20', 19, 20, 2, 'admin'),\n" +
-            "(3, '2017-05-25', 19, 20, 3, 'admin'),\n" +
-            "(4, '2017-05-12', 19, 20, 4, 'admin'),\n" +
-            "(5, '2017-05-02', 19, 20, 5, 'admin');\n";
+            " VALUES (1, '22-06-2017', 18, 19, 1, 'admin'),\n" +
+            "(2, '10-06-2017', 19, 20, 2, 'admin'),\n" +
+            "(3, '25-05-2017', 20, 21, 3, 'admin'),\n" +
+            "(4, '12-05-2017', 17, 18, 4, 'admin'),\n" +
+            "(5, '02-05-2017', 21, 22, 5, 'admin');";
 
     //Stringa creazione tabella Favorites
     private static final String create_table_favorites
@@ -557,6 +559,9 @@ public class DBHandler extends SQLiteOpenHelper {
         User user = new User(c.getString(0), c.getString(1), c.getString(2),
                 c.getString(3), c.getString(4), c.getInt(5), bm, reservationList, favoritesList);
 
+        c.close();
+        c1.close();
+
         return user;
     }
 
@@ -570,22 +575,24 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void setAllReservations(){
+    void setAllReservations(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "SELECT * FROM " + RESERVATION_TABLE_NAME, null );
 
         while(res.moveToNext()){
             Court c = Court.getCourt(res.getInt(4));
             Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd", Locale.ITALIAN);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN);
             try {
                 cal.setTime(sdf.parse(res.getString(1)));
             }
             catch(ParseException e){
-
+                e.printStackTrace();
             }
-            new Reservation(res.getInt(0), cal, res.getInt(2), res.getInt(3), c);
+            new Reservation(res.getInt(0), cal, res.getInt(2), res.getInt(3), c, true);
         }
+
+        res.close();
     }
 
     public void deleteFavorite(String username, Integer id){
@@ -600,8 +607,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 " VALUES(?,?)", new String[]{username, id.toString()});
     }
 
-    void retrieveReservation(User u, List<Integer> deletedItems){
+    List<Reservation> retrieveReservation(User u, List<Integer> deletedItems){
         SQLiteDatabase db = this.getReadableDatabase();
+        List<Reservation> list = new ArrayList<>();
 
         String query = "SELECT * FROM " + RESERVATION_TABLE_NAME +
                 " WHERE " + RESERVATION_COLUMN_ID + " IN ( ";
@@ -611,24 +619,40 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
 
-        query = query.substring(0, query.length() - 1) + ") AND " + RESERVATION_COLUMN_USER + "=" + u.getUsername();
+        query = query.substring(0, query.length() - 2) + " ) AND " + RESERVATION_COLUMN_USER + "=?";
 
-        Cursor c =  db.rawQuery( query, new String[]{});
+        Cursor c =  db.rawQuery( query, new String[]{u.getUsername()});
 
         while(c.moveToNext()){
             Court court = Court.getCourt(c.getInt(4));
             Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd", Locale.ITALIAN);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN);
             try {
                 cal.setTime(sdf.parse(c.getString(1)));
             }
             catch(ParseException e){
                 cal.setTime(new Date());
             }
-            new Reservation(c.getInt(0), cal, c.getInt(2) , c.getInt(3), court);
-            u.addReservation(c.getInt(0));
+            list.add(new Reservation(c.getInt(0), cal, c.getInt(2) , c.getInt(3), court, false));
         }
 
+        c.close();
+
+        return list;
+    }
+
+    void deleteReservations(List<Integer> deletedItems){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "DELETE FROM " + RESERVATION_TABLE_NAME +
+                " WHERE " + RESERVATION_COLUMN_ID + " IN ( ";
+
+        for(Integer i: deletedItems){
+            query += i.toString() + ", ";
+        }
+
+        query = query.substring(0, query.length() - 2) + " )";
+
+        Cursor c =  db.rawQuery( query, new String[]{});
         c.close();
     }
 

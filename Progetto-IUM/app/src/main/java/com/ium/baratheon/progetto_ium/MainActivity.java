@@ -14,8 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Session session = Session.getInstance(this.getApplicationContext());
-
-        Utility.setUp(db);
+        Utility.setUp();
 
         if(session.hasPrefs() && (!session.getUsername().isEmpty() && !session.getPassword().isEmpty())) {
             Intent h = new Intent(MainActivity.this, HomepageActivity.class);

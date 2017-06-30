@@ -4,6 +4,9 @@ import android.graphics.Bitmap;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /*
@@ -103,9 +106,36 @@ class User implements Serializable{
         this.age = age;
     }
 
-    List<Integer> getReservation() { return reservation; }
+    List<Integer> getReservation() {
+        Collections.sort(reservation, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return Reservation.get(o2).getDay().compareTo(Reservation.get(o1).getDay());
+            }
+        });
+
+        return reservation;
+    }
 
     public void addReservation(int id) { this.reservation.add(id); }
+
+    void addReservations(List<Reservation> list){
+        for(Reservation r: list){
+            this.reservation.add(r.getID());
+        }
+
+        Collections.sort(this.reservation, new Comparator<Integer>(){
+            @Override
+            public int compare(Integer s1, Integer s2) {
+                return Reservation.get(s2).getDay().compareTo(Reservation.get(s2).getDay());
+            }
+        });
+
+    }
+
+    void removeReservations(List<Integer> list){
+        this.reservation.removeAll(list);
+    }
 
     boolean getFavorite(Court court){
         return this.favorites.contains(court.getID());

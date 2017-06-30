@@ -19,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -44,7 +46,7 @@ public class HomepageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         ImageView drawerButton, deleteButton;
-        FloatingActionButton addButton;
+        final FloatingActionButton addButton;
         TextView nameTextView, mailTextView;
 
         u = Session.getInstance(getApplicationContext()).getUser();
@@ -61,6 +63,16 @@ public class HomepageActivity extends AppCompatActivity {
 
         selectionLayout = (RelativeLayout) findViewById(R.id.selectionLayout);
         selectedTextView = (TextView) findViewById(R.id.selectedItemsNumber);
+
+        addButton = (FloatingActionButton) findViewById(R.id.addButton);
+        addButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Session.getInstance(getApplicationContext()).setUser(u);
+                Intent h = new Intent(HomepageActivity.this, NewReservationActivity.class);
+                HomepageActivity.this.startActivity(h);
+            }
+        });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -83,6 +95,7 @@ public class HomepageActivity extends AppCompatActivity {
                     selectionMode = true;
                     selectedItemsNumber++;
                     selectedTextView.setText(String.format(Locale.ITALIAN, "%d", selectedItemsNumber));
+                    addButton.setVisibility(View.GONE);
                     selectedItems = new ArrayList<>();
                     setTitle("");
                     selectionLayout.setVisibility(View.VISIBLE);
@@ -95,6 +108,7 @@ public class HomepageActivity extends AppCompatActivity {
                     selectionMode = false;
                     setTitle("Le tue prenotazioni");
                     selectionLayout.setVisibility(View.GONE);
+                    addButton.setVisibility(View.VISIBLE);
                 }
 
                 return false;
@@ -107,16 +121,19 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for(Iterator<Reservation> i = resList.iterator(); i.hasNext();){
-                    if(selectedItems.contains(i.next().getID())){
+                    Reservation r = i.next();
+                    if(selectedItems.contains(r.getID())){
                         i.remove();
                     }
                 }
 
-                for(Iterator<Integer> i = u.getReservation().iterator(); i.hasNext();){
-                    if(selectedItems.contains(i.next())){
-                        i.remove();
-                    }
+                for(Integer i: selectedItems) {
+                    reservationAdapter.remove(Reservation.get(i));
                 }
+                reservationAdapter.notifyDataSetChanged();
+
+                u.removeReservations(selectedItems);
+                System.out.println(u.getReservation());
 
                 for(View vv: listView.getTouchables()){
                     vv.setBackgroundColor(Color.TRANSPARENT);
@@ -129,16 +146,46 @@ public class HomepageActivity extends AppCompatActivity {
                 Snackbar undoBar = Snackbar.make(findViewById(R.id.homepageLayout),
                         selectedItemsNumber + " elementi eliminati",
                         Snackbar.LENGTH_SHORT);
+
                 undoBar.setAction("ANNULLA", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DBHandler.getInstance().retrieveReservation(u, selectedItems);
+                        List<Reservation> list = DBHandler.getInstance().retrieveReservation(u, selectedItems);
+
+                        resList.addAll(list);
+                        u.addReservations(list);
+
+                        Collections.sort(resList, new Comparator<Reservation>(){
+                            @Override
+                            public int compare(Reservation s1, Reservation s2) {
+                                return s2.getDay().compareTo(s1.getDay());
+                            }
+                        });
+
+                        reservationAdapter.notifyDataSetChanged();
+
+                        selectedItemsNumber = 0;
+                        selectedItems.clear();
                     }
                 });
+
+                undoBar.setCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        if(selectedItemsNumber>0) {
+                            DBHandler.getInstance().deleteReservations(selectedItems);
+                            Reservation.remove(selectedItems);
+                            Reservation.removeAllNull();
+                            selectedItemsNumber = 0;
+                            selectedItems.clear();
+                        }
+                    }
+                });
+
+                undoBar.setDuration(8000);
                 undoBar.show();
 
-                selectedItemsNumber = 0;
-                selectedItems.clear();
+                addButton.setVisibility(View.VISIBLE);
             }
         });
 
@@ -156,6 +203,7 @@ public class HomepageActivity extends AppCompatActivity {
                                 case R.id.action_home:
                                     break;
                                 case R.id.action_viewCourt:
+                                    Session.getInstance(getApplicationContext()).setUser(u);
                                     h = new Intent(HomepageActivity.this, CourtListActivity.class);
                                     HomepageActivity.this.startActivity(h);
                                     finish();
@@ -191,14 +239,5 @@ public class HomepageActivity extends AppCompatActivity {
 
         nameTextView.setText(u.getName() + " " + u.getSurname());
         mailTextView.setText(u.getEmail());
-
-        addButton = (FloatingActionButton) findViewById(R.id.addButton);
-        addButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent h = new Intent(HomepageActivity.this, NewReservationActivity.class);
-                HomepageActivity.this.startActivity(h);
-            }
-        });
     }
 }

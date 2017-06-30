@@ -41,8 +41,8 @@ class Utility {
         return (startHour.equals(endHour) && startMinute > endMinute)  || startHour > endHour;
     }
 
-    public static void setUp(DBHandler db){
-        db.setAllCourts();
-        db.setAllReservations();
+    public static void setUp(){
+        DBHandler.getInstance().setAllCourts();
+        DBHandler.getInstance().setAllReservations();
     }
 }
