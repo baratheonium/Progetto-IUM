@@ -1,6 +1,7 @@
 package com.ium.baratheon.progetto_ium;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.design.widget.FloatingActionButton;
@@ -17,7 +18,7 @@ public class CompleteRegistrationActivity extends AppCompatActivity {
     TextView editPic, nameRecap, ageRecap, mailRecap, usernameRecap;
     FloatingActionButton confirmButton;
     ImageView proPic;
-    DBHandler db = new DBHandler(this);
+    DBHandler db = DBHandler.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +41,22 @@ public class CompleteRegistrationActivity extends AppCompatActivity {
         editPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Vista su galleria/fotocamera
             }
         });
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bitmap b = proPic.getDrawable().equals(getResources().getDrawable(R.drawable.default_pro_pic)) ?
+                        ((BitmapDrawable)proPic.getDrawable()).getBitmap() : null;
+
+                System.out.println(b);
                 User u = new User(getIntent().getStringExtra("username"),
                         getIntent().getStringExtra("password"),
                         getIntent().getStringExtra("name"),
                         getIntent().getStringExtra("surname"),
                         getIntent().getStringExtra("mail"),
-                        Integer.parseInt(getIntent().getStringExtra("age")),
-                        ((BitmapDrawable)proPic.getDrawable()).getBitmap());
+                        Integer.parseInt(getIntent().getStringExtra("age")), b);
 
                 //Inserimento nel DB?
                 db.insertUser(u);

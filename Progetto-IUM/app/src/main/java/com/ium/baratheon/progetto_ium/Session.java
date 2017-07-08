@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
+import java.util.Map;
+
 /**
  * Created by Riccardo Locci on 15/06/2017.
  *
@@ -53,9 +55,10 @@ class Session {
     }
 
     public void setUser(User user){
+        long start = System.currentTimeMillis(); System.out.println(user);
         Gson gson = new Gson();
         String jsonUser = gson.toJson(user);
-        prefs.edit().putString("user", jsonUser).apply();
+        prefs.edit().putString("user", jsonUser).apply(); System.out.println(jsonUser);
     }
 
     public User getUser(){

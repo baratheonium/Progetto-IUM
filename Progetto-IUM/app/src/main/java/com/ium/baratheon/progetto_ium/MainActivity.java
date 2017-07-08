@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Session session = Session.getInstance(this.getApplicationContext());
+        DBHandler.getInstance().onUpgrade(db.getWritableDatabase(), 1, 1);
         Utility.setUp();
 
         if(session.hasPrefs() && (!session.getUsername().isEmpty() && !session.getPassword().isEmpty())) {

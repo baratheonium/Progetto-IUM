@@ -2,6 +2,7 @@ package com.ium.baratheon.progetto_ium;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
     Button login;
     EditText username, password;
     TextView error, register;
-    Boolean notExisting;
     Boolean wrongPass;
 
     @Override
@@ -40,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 error.setVisibility(View.GONE);
-                notExisting = true;
                 wrongPass = true;
 
                 if (password.getText().toString().isEmpty()) {
@@ -49,6 +50,10 @@ public class LoginActivity extends AppCompatActivity {
                     error.setVisibility(View.VISIBLE);
                 }
                 else {
+                    System.out.println("INIZIO");
+                    if(DBHandler.getInstance()==null){
+                        new DBHandler(getApplicationContext());
+                    }
                     User u = DBHandler.getInstance().authenticate(username.getText().toString(), password.getText().toString());
                     if (u != null) {
                         Intent h = new Intent(LoginActivity.this, HomepageActivity.class);

@@ -104,6 +104,19 @@ public class NewReservationActivity extends AppCompatActivity {
         startText = (TextView) findViewById(R.id.startText);
         endText = (TextView) findViewById(R.id.endText);
 
+        if(getIntent().getStringExtra("courtName")!=null){
+            courtNameText.setText(getIntent().getStringExtra("courtName"));
+        }
+        if(getIntent().getStringExtra("day")!=null){
+            courtNameText.setText(getIntent().getStringExtra("day"));
+        }
+        if(getIntent().getStringExtra("start")!=null){
+            courtNameText.setText(getIntent().getStringExtra("start"));
+        }
+        if(getIntent().getStringExtra("end")!=null){
+            courtNameText.setText(getIntent().getStringExtra("end"));
+        }
+
         //Più facile da manutenere se si crea una map<chiave,valore> e l'immagine di svuotamento
         emptyName = (ImageView) findViewById(R.id.emptyName);
         emptyDay = (ImageView) findViewById(R.id.emptyDay);
@@ -123,6 +136,19 @@ public class NewReservationActivity extends AppCompatActivity {
         startText.setText(Utility.toDoubleDigit(c.get(Calendar.HOUR_OF_DAY)) + ":" + Utility.toDoubleDigit(c.get(Calendar.MINUTE)));
 
         searchButton = (FloatingActionButton) findViewById(R.id.searchButton);
+
+        courtNameText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent h = new Intent(NewReservationActivity.this, CourtSelectionActivity.class);
+
+                h.putExtra("day", dayText.getText().toString());
+                h.putExtra("start", startText.getText().toString());
+                h.putExtra("end", endText.getText().toString());
+
+                NewReservationActivity.this.startActivity(h);
+            }
+        });
 
         startText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +186,7 @@ public class NewReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startText.setText("");
+                startLayout.setBackgroundColor(View.GONE);
             }
         });
 
@@ -167,6 +194,7 @@ public class NewReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 endText.setText("");
+                endLayout.setBackgroundColor(View.GONE);
             }
         });
 

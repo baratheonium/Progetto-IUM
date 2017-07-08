@@ -107,14 +107,18 @@ class User implements Serializable{
     }
 
     List<Integer> getReservation() {
-        Collections.sort(reservation, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return Reservation.get(o2).getDay().compareTo(Reservation.get(o1).getDay());
-            }
-        });
+        if(reservation != null) {
+            Collections.sort(reservation, new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    return Reservation.get(o2).getDay().compareTo(Reservation.get(o1).getDay());
+                }
+            });
 
-        return reservation;
+            return reservation;
+        }
+
+        return null;
     }
 
     public void addReservation(int id) { this.reservation.add(id); }
@@ -137,6 +141,10 @@ class User implements Serializable{
         this.reservation.removeAll(list);
     }
 
+    List<Integer> getFavorites(){
+        return this.favorites;
+    }
+
     boolean getFavorite(Court court){
         return this.favorites.contains(court.getID());
     }
@@ -155,5 +163,27 @@ class User implements Serializable{
 
     void setPassword(String password) {
         this.password = password;
+    }
+
+    Bitmap getProfilePic(){
+        return this.profilePic;
+    }
+
+    static User getUser(String username, String password){
+        if(userList != null) {
+            for (User u : userList) {
+                if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                    return u;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public String toString(){
+        return "Nome: " + this.name + "\nCognome: " + this.surname +
+                "\nUsername: " + this.username + "\nPassword: " + this.password +
+                "\nEtà: " + this.age + "\nPrenotazioni: " + this.reservation + "\nPreferiti: " + this.favorites;
     }
 }

@@ -53,8 +53,10 @@ public class HomepageActivity extends AppCompatActivity {
 
         final List<Reservation> resList = new ArrayList<>();
 
-        for(Integer i: u.getReservation()){
-            resList.add(Reservation.get(i));
+        if(u.getReservation() != null && !u.getReservation().isEmpty()) {
+            for (Integer i : u.getReservation()) {
+                resList.add(Reservation.get(i));
+            }
         }
 
         reservationAdapter = new ArrayAdapter<>(this, R.layout.row, resList);
@@ -133,7 +135,6 @@ public class HomepageActivity extends AppCompatActivity {
                 reservationAdapter.notifyDataSetChanged();
 
                 u.removeReservations(selectedItems);
-                System.out.println(u.getReservation());
 
                 for(View vv: listView.getTouchables()){
                     vv.setBackgroundColor(Color.TRANSPARENT);

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -202,9 +203,16 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(USER_COLUMN_SURNAME, user.getSurname());
         values.put(USER_COLUMN_EMAIL, user.getEmail());
         values.put(USER_COLUMN_AGE, user.getAge());
-        //values.put(USER_COLUMN_PROFILE_PIC, convertBitmap(user.getProfilePic()));
-        //values.put(USER_COLUMN_FAVORITES, user.getFavorites());
-        //values.put(USER_COLUMN_RESERVATION, user.getReservation());
+
+        byte[] bArray = null;
+
+        if(user.getProfilePic()!=null) {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            user.getProfilePic().compress(Bitmap.CompressFormat.PNG, 100, bos);
+            bArray = bos.toByteArray();
+        }
+
+        values.put(USER_COLUMN_PROFILE_PIC, bArray);
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -520,47 +528,49 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public User authenticate(String username, String password){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c =  db.rawQuery( "SELECT * FROM " + USER_TABLE_NAME + " WHERE " +
-                USER_COLUMN_USERNAME + "=? AND " + USER_COLUMN_PASSWORD + " =?",
-                new String[]{username, password} );
+        User user = User.getUser(username, password);
+        if(user == null) {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + USER_TABLE_NAME + " WHERE " +
+                            USER_COLUMN_USERNAME + "=? AND " + USER_COLUMN_PASSWORD + " =?",
+                    new String[]{username, password});
 
-        if(!c.moveToNext()){
-            return null;
+            if (!c.moveToNext()) {
+                return null;
+            }
+
+            byte[] byteArray = c.getBlob(6);
+            Bitmap bm;
+            if (byteArray != null) {
+                bm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            } else {
+                bm = null;
+            }
+
+            Cursor c1 = db.rawQuery("SELECT " + RESERVATION_COLUMN_ID + " FROM " + RESERVATION_TABLE_NAME + " WHERE " +
+                    RESERVATION_COLUMN_USER + "=?", new String[]{username});
+
+            List<Integer> reservationList = new ArrayList<>();
+
+            while (c1.moveToNext()) {
+                reservationList.add(c1.getInt(0));
+            }
+
+            c1 = db.rawQuery("SELECT " + FAVORITES_COLUMN_COURT + " FROM " + FAVORITES_TABLE_NAME + " WHERE " +
+                    FAVORITES_COLUMN_USER + "=?", new String[]{username});
+
+            List<Integer> favoritesList = new ArrayList<>();
+
+            while (c1.moveToNext()) {
+                favoritesList.add(c1.getInt(0));
+            }
+
+            user = new User(c.getString(0), c.getString(1), c.getString(2),
+                    c.getString(3), c.getString(4), c.getInt(5), bm, reservationList, favoritesList);
+
+            c.close();
+            c1.close();
         }
-
-        byte[] byteArray = c.getBlob(6);
-        Bitmap bm;
-        if(byteArray!=null) {
-            bm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        }
-        else{
-            bm = null;
-        }
-
-        Cursor c1 = db.rawQuery("SELECT " + RESERVATION_COLUMN_ID + " FROM " + RESERVATION_TABLE_NAME + " WHERE " +
-                RESERVATION_COLUMN_USER + "=?", new String[]{username});
-
-        List<Integer> reservationList = new ArrayList<>();
-
-        while(c1.moveToNext()){
-            reservationList.add(c1.getInt(0));
-        }
-
-        c1 = db.rawQuery("SELECT " + FAVORITES_COLUMN_COURT + " FROM " + FAVORITES_TABLE_NAME + " WHERE " +
-                FAVORITES_COLUMN_USER + "=?", new String[]{username});
-
-        List<Integer> favoritesList = new ArrayList<>();
-
-        while(c1.moveToNext()){
-            favoritesList.add(c1.getInt(0));
-        }
-
-        User user = new User(c.getString(0), c.getString(1), c.getString(2),
-                c.getString(3), c.getString(4), c.getInt(5), bm, reservationList, favoritesList);
-
-        c.close();
-        c1.close();
 
         return user;
     }

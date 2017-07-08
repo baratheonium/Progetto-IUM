@@ -95,7 +95,6 @@ class Reservation implements Serializable{
     }
 
     static Reservation get(int id){
-        System.out.println(reservationList);
         for(Reservation r: reservationList){
             if(r.ID == id){
                 return r;
