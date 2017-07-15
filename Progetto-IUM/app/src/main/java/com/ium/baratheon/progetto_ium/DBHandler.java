@@ -666,6 +666,22 @@ public class DBHandler extends SQLiteOpenHelper {
         c.close();
     }
 
+    Boolean lookForReservation(Reservation r){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + RESERVATION_TABLE_NAME +
+                " WHERE " + RESERVATION_COLUMN_DAY + " = " + r.getDay().get(Calendar.DAY_OF_MONTH) +
+                "-" + r.getDay().get(Calendar.MONTH) + "-" + r.getDay().get(Calendar.YEAR) +
+                " AND " + RESERVATION_COLUMN_COURT + " = " + r.getCourt().getID() +
+                " AND " + RESERVATION_COLUMN_BEGIN + " = " + r.getBegin() +
+                " AND " + RESERVATION_COLUMN_END + " = " + r.getEnd() + ";";
+
+        Cursor c =  db.rawQuery( query, new String[]{});
+        boolean check = c.moveToNext();
+        c.close();
+        return check;
+    }
+
     public static DBHandler getInstance(){
         return db;
     }

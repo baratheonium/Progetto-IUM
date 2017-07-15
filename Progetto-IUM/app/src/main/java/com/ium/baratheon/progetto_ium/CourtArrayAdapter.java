@@ -18,17 +18,17 @@ import java.util.List;
 
 class CourtArrayAdapter<T> extends ArrayAdapter {
     private List<Court> items;
-    private User user;
 
-    CourtArrayAdapter(Context context, int resource, int textViewResourceId, User user, List<Court> objects){
+    CourtArrayAdapter(Context context, int resource, int textViewResourceId, List<Court> objects){
         super(context, resource, textViewResourceId, objects);
         this.items = objects;
-        this.user = user;
     }
 
     @NonNull
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         View v = convertView;
+        final User user = Session.getInstance(getContext()).getUser();
+
         if (v == null) {
             LayoutInflater vi = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.listview, null);
@@ -44,6 +44,10 @@ class CourtArrayAdapter<T> extends ArrayAdapter {
                 courtName.setText(item.toString());
             }
 
+            if(user.getFavorites().contains(item.getID())){
+                image.setImageResource(R.drawable.star_on);
+            }
+
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -57,6 +61,7 @@ class CourtArrayAdapter<T> extends ArrayAdapter {
                         user.addFavorite(item.getID());
                         DBHandler.getInstance().deleteFavorite(user.getUsername(), item.getID());
                     }
+                    Session.getInstance(getContext()).setUser(user);
                 }
             });
 

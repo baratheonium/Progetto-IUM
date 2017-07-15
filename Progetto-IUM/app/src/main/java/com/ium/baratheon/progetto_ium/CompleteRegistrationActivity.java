@@ -50,7 +50,6 @@ public class CompleteRegistrationActivity extends AppCompatActivity {
                 Bitmap b = proPic.getDrawable().equals(getResources().getDrawable(R.drawable.default_pro_pic)) ?
                         ((BitmapDrawable)proPic.getDrawable()).getBitmap() : null;
 
-                System.out.println(b);
                 User u = new User(getIntent().getStringExtra("username"),
                         getIntent().getStringExtra("password"),
                         getIntent().getStringExtra("name"),

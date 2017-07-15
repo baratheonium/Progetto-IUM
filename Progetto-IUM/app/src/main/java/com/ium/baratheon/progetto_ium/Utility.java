@@ -1,6 +1,12 @@
 package com.ium.baratheon.progetto_ium;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -44,5 +50,51 @@ class Utility {
     public static void setUp(){
         DBHandler.getInstance().setAllCourts();
         DBHandler.getInstance().setAllReservations();
+    }
+
+    static List<Reservation> populateSearchResult(Court c, String day, String start, String end){
+        List<Reservation> list = new ArrayList<>();
+        if(c!=null) {
+            int begins = c.getBegin(), ends = c.getEnd();
+
+            int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+            if (Calendar.getInstance().get(Calendar.MINUTE) > 0) hour++;
+
+            Calendar cal = Calendar.getInstance();
+            if (day != null && !day.isEmpty()) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN);
+
+                try {
+                    cal.setTime(sdf.parse(day));
+                } catch (ParseException e) {
+                    cal.setTime(new Date());
+                    if (begins < hour) begins = hour;
+                }
+            } else if (begins < hour) begins = hour;
+
+            if (start != null && !start.isEmpty()) {
+                hour = Integer.parseInt(start.substring(0, start.indexOf(':')));
+                if (begins < hour) {
+                    begins = hour;
+                    if (Integer.parseInt(start.substring(start.indexOf(':') + 1)) > 0)
+                        begins++;
+                }
+            }
+            if (end != null && !end.isEmpty()) {
+                hour = Integer.parseInt(end.substring(0, end.indexOf(':')));
+                if (ends > hour) ends = hour;
+            }
+
+            for (int i = begins; i < ends; i++) {
+                Reservation r = new Reservation();
+                r.setBegin(i);
+                r.setEnd(i + 1);
+                r.setCourt(c);
+                r.setDay(cal);
+                if (!DBHandler.getInstance().lookForReservation(r)) list.add(r);
+            }
+        }
+
+        return list;
     }
 }

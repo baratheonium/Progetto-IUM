@@ -232,7 +232,7 @@
             android:id="@+id/searchButton"
             android:tint="#FFFFFF"
             android:layout_gravity="bottom|end"
-            app:backgroundTint="@color/colorPrimaryLight"/>
+            app:backgroundTint="@color/colorPrimary"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

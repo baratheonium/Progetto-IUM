@@ -46,7 +46,6 @@ public class NewReservationActivity extends AppCompatActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerView = (NavigationView) findViewById(R.id.nav_view);
-
         u = Session.getInstance(getApplicationContext()).getUser();
 
         if (mDrawerView != null) {
@@ -104,17 +103,20 @@ public class NewReservationActivity extends AppCompatActivity {
         startText = (TextView) findViewById(R.id.startText);
         endText = (TextView) findViewById(R.id.endText);
 
+        dayText.setText(Utility.toDoubleDigit(c.get(Calendar.DAY_OF_MONTH)) + "-" + Utility.toDoubleDigit(c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.YEAR));
+        startText.setText(Utility.toDoubleDigit(c.get(Calendar.HOUR_OF_DAY)) + ":" + Utility.toDoubleDigit(c.get(Calendar.MINUTE)));
+
         if(getIntent().getStringExtra("courtName")!=null){
             courtNameText.setText(getIntent().getStringExtra("courtName"));
         }
         if(getIntent().getStringExtra("day")!=null){
-            courtNameText.setText(getIntent().getStringExtra("day"));
+            dayText.setText(getIntent().getStringExtra("day"));
         }
         if(getIntent().getStringExtra("start")!=null){
-            courtNameText.setText(getIntent().getStringExtra("start"));
+            startText.setText(getIntent().getStringExtra("start"));
         }
         if(getIntent().getStringExtra("end")!=null){
-            courtNameText.setText(getIntent().getStringExtra("end"));
+            endText.setText(getIntent().getStringExtra("end"));
         }
 
         //Più facile da manutenere se si crea una map<chiave,valore> e l'immagine di svuotamento
@@ -131,9 +133,6 @@ public class NewReservationActivity extends AppCompatActivity {
         cancelButton = (Button) findViewById(R.id.cancelButton);
         cancelCalendarButton = (Button) findViewById(R.id.cancelCalendarButton);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
-
-        dayText.setText(Utility.toDoubleDigit(c.get(Calendar.DAY_OF_MONTH)) + "-" + Utility.toDoubleDigit(c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.YEAR));
-        startText.setText(Utility.toDoubleDigit(c.get(Calendar.HOUR_OF_DAY)) + ":" + Utility.toDoubleDigit(c.get(Calendar.MINUTE)));
 
         searchButton = (FloatingActionButton) findViewById(R.id.searchButton);
 

@@ -55,10 +55,10 @@ class Session {
     }
 
     public void setUser(User user){
-        long start = System.currentTimeMillis(); System.out.println(user);
+        long start = System.currentTimeMillis();
         Gson gson = new Gson();
         String jsonUser = gson.toJson(user);
-        prefs.edit().putString("user", jsonUser).apply(); System.out.println(jsonUser);
+        prefs.edit().putString("user", jsonUser).apply();
     }
 
     public User getUser(){

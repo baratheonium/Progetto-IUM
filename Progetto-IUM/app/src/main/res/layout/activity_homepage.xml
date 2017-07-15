@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:id="@+id/homepageLayout"
+        android:background="@color/colorPrimaryLight"
         tools:context="com.ium.baratheon.progetto_ium.HomepageActivity">
 
         <RelativeLayout
@@ -94,9 +95,10 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="511dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="56dp"
             android:id="@+id/reservationList"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:divider="@null"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/addButton"
@@ -107,7 +109,7 @@
             app:srcCompat="@android:drawable/ic_input_add"
             android:tint="#FFFFFF"
             android:layout_gravity="bottom|end"
-            app:backgroundTint="@color/colorPrimaryLight" />
+            app:backgroundTint="@color/colorPrimary" />
 
     </android.support.design.widget.CoordinatorLayout >
 

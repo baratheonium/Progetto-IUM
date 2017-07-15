@@ -36,7 +36,8 @@
         <activity
             android:name=".NewReservationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ReservationSearchResultActivity" />
+        <activity android:name=".ReservationSearchResultActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.TransparentStatusBar">
@@ -46,7 +47,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CourtSelectionActivity"></activity>
+        <activity android:name=".CourtSelectionActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

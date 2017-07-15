@@ -59,7 +59,7 @@ public class HomepageActivity extends AppCompatActivity {
             }
         }
 
-        reservationAdapter = new ArrayAdapter<>(this, R.layout.row, resList);
+        reservationAdapter = new ArrayAdapter<>(this, R.layout.custom_listview, R.id.text, resList);
         listView = (ListView) findViewById(R.id.reservationList);
         listView.setAdapter(reservationAdapter);
 

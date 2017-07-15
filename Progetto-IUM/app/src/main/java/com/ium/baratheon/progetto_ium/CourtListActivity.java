@@ -29,16 +29,15 @@ public class CourtListActivity extends AppCompatActivity {
         ImageView drawerButton;
         TextView nameTextView, mailTextView;
 
-        final User u = Session.getInstance(getApplicationContext()).getUser();
-
         //Modificato per il test del DB
-        CourtArrayAdapter<Court> courtAdapter = new CourtArrayAdapter<>(this, R.layout.listview, R.id.row, u, Court.courtList);
+        CourtArrayAdapter<Court> courtAdapter = new CourtArrayAdapter<>(this, R.layout.listview, R.id.row, Court.courtList);
         ListView listView = (ListView) findViewById(R.id.courtList);
         listView.setAdapter(courtAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User u = Session.getInstance(getApplicationContext()).getUser();
                 Session.getInstance(getApplicationContext()).setUser(u);
                 Intent h = new Intent(CourtListActivity.this, CourtDetailActivity.class);
                 h.putExtra("thisCourt", Court.courtList.get(position));
@@ -58,6 +57,7 @@ public class CourtListActivity extends AppCompatActivity {
 
                             switch (menuItem.getItemId()) {
                                 case R.id.action_home:
+                                    User u = Session.getInstance(getApplicationContext()).getUser();
                                     Session.getInstance(getApplicationContext()).setUser(u);
                                     h = new Intent(CourtListActivity.this, HomepageActivity.class);
                                     CourtListActivity.this.startActivity(h);
@@ -93,6 +93,7 @@ public class CourtListActivity extends AppCompatActivity {
         nameTextView = (TextView) findViewById(R.id.nameTextView);
         mailTextView = (TextView) findViewById(R.id.mailTextView);
 
+        User u = Session.getInstance(getApplicationContext()).getUser();
         nameTextView.setText(u.getName() + " " + u.getSurname());
         mailTextView.setText(u.getEmail());
     }

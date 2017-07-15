@@ -69,4 +69,6 @@
 
     <string name="forgot_password">Hai dimenticato la password!</string>
     <string name="wrong_combo">Combinazione username o password errata!</string>
+
+    <string name="null_field">------------</string>
 </resources>

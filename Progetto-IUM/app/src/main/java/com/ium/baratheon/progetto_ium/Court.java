@@ -98,11 +98,11 @@ class Court implements Serializable{
         this.setFieldNumber(number);
     }
 
-    public Bitmap getCourt() {
+    public Bitmap getCourtPic() {
         return courtPic;
     }
 
-    public void setCourt(Bitmap courtPic) {
+    public void setCourtPic(Bitmap courtPic) {
         this.courtPic = courtPic;
     }
 
@@ -147,6 +147,15 @@ class Court implements Serializable{
     static Court getCourt(int ID){
         for(Court c: courtList){
             if(c.courtID==ID){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    static Court getCourt(String name){
+        for(Court c: courtList){
+            if(c.name.equals(name)){
                 return c;
             }
         }

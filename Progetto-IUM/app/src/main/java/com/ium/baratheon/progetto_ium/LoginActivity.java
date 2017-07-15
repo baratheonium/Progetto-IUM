@@ -50,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
                     error.setVisibility(View.VISIBLE);
                 }
                 else {
-                    System.out.println("INIZIO");
                     if(DBHandler.getInstance()==null){
                         new DBHandler(getApplicationContext());
                     }

@@ -13,4 +13,5 @@
     <color name="colorPrimaryLight">#6f81ff</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="default_background">#fafafa</color>
 </resources>

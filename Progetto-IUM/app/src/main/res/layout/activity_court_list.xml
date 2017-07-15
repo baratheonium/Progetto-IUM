@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.ium.baratheon.progetto_ium.CourtListActivity">
+        tools:context="com.ium.baratheon.progetto_ium.CourtListActivity"
+        android:background="@color/colorPrimaryLight">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
@@ -26,7 +27,8 @@
             android:layout_height="511dp"
             android:layout_marginTop="55dp"
             android:id="@+id/courtList"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:divider="@null"/>
 
         <TextView
             android:text="@string/structlist"
