@@ -1,22 +1,19 @@
 package com.ium.baratheon.progetto_ium;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     Button login;
     EditText username, password;
-    TextView error, register;
-    Boolean wrongPass;
+    TextView register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
         login = (Button) findViewById(R.id.loginButton);
         username = (EditText) findViewById(R.id.usernameInput);
         password = (EditText) findViewById(R.id.passwordInput);
-        error = (TextView) findViewById(R.id.errorText);
         register = (TextView) findViewById(R.id.registerLink);
 
 
@@ -41,15 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                error.setVisibility(View.GONE);
-                wrongPass = true;
-
-                if (password.getText().toString().isEmpty()) {
-                    error.setText(R.string.forgot_password);
-                    error.setTextColor(Color.RED);
-                    error.setVisibility(View.VISIBLE);
-                }
-                else {
+                if(!username.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
                     if(DBHandler.getInstance()==null){
                         new DBHandler(getApplicationContext());
                     }
@@ -60,9 +48,15 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.this.startActivity(h);
                     }
                     else{
-                        error.setText(R.string.wrong_combo);
-                        error.setTextColor(Color.RED);
-                        error.setVisibility(View.VISIBLE);
+                        Toast.makeText(LoginActivity.this, R.string.wrong_combo, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    if (username.getText().toString().isEmpty()) {
+                        Toast.makeText(LoginActivity.this, R.string.forgot_username, Toast.LENGTH_SHORT).show();
+                    }
+                    if (password.getText().toString().isEmpty()) {
+                        Toast.makeText(LoginActivity.this, R.string.forgot_password, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

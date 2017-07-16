@@ -1,7 +1,10 @@
 package com.ium.baratheon.progetto_ium;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +22,7 @@ public class ReservationSearchResultActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.reservationList);
         User user = Session.getInstance(getApplicationContext()).getUser();
-        List<Reservation> list = new ArrayList<>();
+        final List<Reservation> list = new ArrayList<>();
         String courtName = getIntent().getStringExtra("courtName"),
                 day = getIntent().getStringExtra("day"),
                 start = getIntent().getStringExtra("start"),
@@ -61,6 +64,17 @@ public class ReservationSearchResultActivity extends AppCompatActivity {
 
         ArrayAdapter<Reservation> reservationArrayAdapter = new ArrayAdapter<>(this, R.layout.custom_listview, R.id.text, list);
         listView.setAdapter(reservationArrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User u = Session.getInstance(getApplicationContext()).getUser();
+                Session.getInstance(getApplicationContext()).setUser(u);
+                Intent h = new Intent(ReservationSearchResultActivity.this, ConfirmReservationActivity.class);
+                h.putExtra("thisReservation", list.get(position));
+                ReservationSearchResultActivity.this.startActivity(h);
+            }
+        });
     }
 
 

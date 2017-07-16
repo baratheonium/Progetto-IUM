@@ -76,6 +76,16 @@ public class HomepageActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Reservation r = resList.get(position);
+                Intent h = new Intent(HomepageActivity.this, ReservationDetailActivity.class);
+                h.putExtra("thisReservation", r);
+                HomepageActivity.this.startActivity(h);
+            }
+        });
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {

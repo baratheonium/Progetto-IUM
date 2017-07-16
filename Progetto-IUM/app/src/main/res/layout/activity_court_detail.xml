@@ -37,7 +37,7 @@
             android:background="@color/colorAccentLight">
 
             <TextView
-                android:text="@string/name"
+                android:text="@string/court_name"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/nameRecap"
@@ -70,7 +70,7 @@
             android:layout_below="@id/nameLayout">
 
             <TextView
-                android:text="@string/mail"
+                android:text="@string/court_email"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"

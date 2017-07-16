@@ -25,6 +25,7 @@ class Reservation implements Serializable{
     static List<Reservation> reservationList;
 
     Reservation(){
+        this.ID = UUID.randomUUID().hashCode();
         if(reservationList == null){
             reservationList = new ArrayList<>();
         }
@@ -119,5 +120,9 @@ class Reservation implements Serializable{
 
     static void removeAllNull(){
         reservationList.removeAll(Collections.singleton(null));
+    }
+
+    static void add(Reservation r){
+        reservationList.add(r);
     }
 }

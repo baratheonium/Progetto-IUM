@@ -2,6 +2,7 @@ package com.ium.baratheon.progetto_ium;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 public class NewReservationActivity extends AppCompatActivity {
@@ -25,7 +28,8 @@ public class NewReservationActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private NavigationView mDrawerView;
     private ImageView drawerButton, emptyName, emptyDay, emptyStart, emptyEnd;
-    private TextView nameTextView, mailTextView, dayText, startText, endText;
+    private TextView nameTextView, mailTextView, dayText, startText, endText,
+            courtNameLabel, dayLabel, startLabel, endLabel;
     private EditText courtNameText;
     private Button okButton, okCalendarButton, cancelButton, cancelCalendarButton;
     FloatingActionButton searchButton;
@@ -43,6 +47,16 @@ public class NewReservationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reservation);
+
+        courtNameLabel = (TextView) findViewById(R.id.courtNameLabel);
+        dayLabel = (TextView) findViewById(R.id.dayLabel);
+        startLabel = (TextView) findViewById(R.id.startLabel);
+        endLabel = (TextView) findViewById(R.id.endLabel);
+
+        courtNameLabel.setTypeface(null, Typeface.BOLD);
+        dayLabel.setTypeface(null, Typeface.BOLD);
+        startLabel.setTypeface(null, Typeface.BOLD);
+        endLabel.setTypeface(null, Typeface.BOLD);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerView = (NavigationView) findViewById(R.id.nav_view);

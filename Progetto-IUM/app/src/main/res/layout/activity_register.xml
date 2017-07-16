@@ -5,205 +5,205 @@
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    tools:context="com.ium.baratheon.progetto_ium.RegistrationActivity">
+    tools:context="com.ium.baratheon.progetto_ium.RegistrationActivity"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.CoordinatorLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:layout_height="50dp"
+            android:id="@+id/nameLayout"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin">
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:text="@string/name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/nameLabel"
                 android:textSize="18sp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/nameInput"
                 android:inputType="textPersonName"
-                android:layout_marginTop="25dp"
-                android:ems="10" />
+                android:ems="10"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"/>
 
-            <TextView
-                android:text="@string/errorName"
-                android:textStyle="italic"
-                android:textColor="#FF0000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/nameError"
-                android:textSize="14sp"
-                android:layout_marginTop="70dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/surnameLayout"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_below="@id/nameLayout"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:text="@string/surname"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/surnameLabel"
                 android:textSize="18sp"
-                android:layout_marginTop="100dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/surnameInput"
                 android:inputType="textPersonName"
-                android:layout_marginTop="125dp"
-                android:ems="10" />
+                android:ems="10"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"/>
+        </RelativeLayout>
 
-            <TextView
-                android:text="@string/errorSurname"
-                android:textStyle="italic"
-                android:textColor="#FF0000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/surnameError"
-                android:textSize="14sp"
-                android:layout_marginTop="170dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/mailLayout"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/surnameLayout"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:text="@string/mail"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/mailLabel"
                 android:textSize="18sp"
-                android:layout_marginTop="200dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mailInput"
                 android:inputType="textEmailAddress"
-                android:layout_marginTop="225dp"
-                android:ems="10" />
+                android:ems="10"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"/>
+        </RelativeLayout>
 
-            <TextView
-                android:text="@string/errorEmail"
-                android:textStyle="italic"
-                android:textColor="#FF0000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/mailError"
-                android:textSize="14sp"
-                android:layout_marginTop="270dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/ageLayout"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_below="@id/mailLayout"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:text="@string/età"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/ageLabel"
                 android:textSize="18sp"
-                android:layout_marginTop="300dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ageInput"
                 android:inputType="number"
-                android:layout_marginTop="325dp"
-                android:ems="10" />
+                android:ems="10"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"/>
+        </RelativeLayout>
 
-            <TextView
-                android:text="@string/errorAge"
-                android:textStyle="italic"
-                android:textColor="#FF0000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ageError"
-                android:textSize="14sp"
-                android:layout_marginTop="370dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/usernameLayout"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/ageLayout"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:text="@string/usern"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/usernameLabel"
                 android:textSize="18sp"
-                android:layout_marginTop="400dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/usernameInput"
-                android:layout_marginTop="425dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"/>
+        </RelativeLayout>
 
-            <TextView
-                android:text="@string/errorUser"
-                android:textStyle="italic"
-                android:textColor="#FF0000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/usernameError"
-                android:textSize="14sp"
-                android:layout_marginTop="470dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/passwordLayout"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/usernameLayout"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:text="@string/password"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/passwordLabel"
                 android:textSize="18sp"
-                android:layout_marginTop="500dp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/passwordInput"
                 android:inputType="textPassword"
-                android:layout_marginTop="525dp"
-                android:ems="10" />
-
-            <TextView
-                android:text="@string/errorPass"
-                android:textStyle="italic"
-                android:textColor="#FF0000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/passwordError"
-                android:textSize="14sp"
-                android:layout_marginTop="570dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-        </android.support.design.widget.CoordinatorLayout>
-    </ScrollView>
+                android:ems="10"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"/>
+        </RelativeLayout>
+     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="65dp"
@@ -214,8 +214,7 @@
         android:tint="#FFFFFF"
         android:layout_gravity="bottom|end"
         app:backgroundTint="@color/colorPrimaryDark"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin" />
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"/>
 
 </android.support.design.widget.CoordinatorLayout>

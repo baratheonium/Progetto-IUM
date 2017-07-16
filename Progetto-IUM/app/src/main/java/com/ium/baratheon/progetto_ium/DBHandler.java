@@ -221,14 +221,17 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     //Inserisce una Reservation nella tabella Reservation
-    public void insertReservation(Reservation reservation) {
-        long millis;
+    public void insertReservation(Reservation reservation, String username) {
         ContentValues values = new ContentValues();
 
-        //values.put(RESERVATION_COLUMN_BEGIN, reservation.getBegin();
+        values.put(RESERVATION_COLUMN_ID, reservation.getID());
+        values.put(RESERVATION_COLUMN_BEGIN, reservation.getBegin());
         values.put(RESERVATION_COLUMN_END, reservation.getEnd());
         values.put(RESERVATION_COLUMN_COURT, reservation.getCourt().getID());
-        values.put(RESERVATION_COLUMN_DAY, reservation.getDay().getTimeInMillis()); //setTimeInMillis(long millis)
+        values.put(RESERVATION_COLUMN_DAY, new SimpleDateFormat(
+                "dd-MM-yyyy", Locale.ITALIAN).format(reservation.getDay().getTime()));
+        values.put(RESERVATION_COLUMN_USER, username);
+        values.put(RESERVATION_COLUMN_COURT, reservation.getCourt().getID());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -653,32 +656,59 @@ public class DBHandler extends SQLiteOpenHelper {
 
     void deleteReservations(List<Integer> deletedItems){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "DELETE FROM " + RESERVATION_TABLE_NAME +
-                " WHERE " + RESERVATION_COLUMN_ID + " IN ( ";
 
+        String query = RESERVATION_COLUMN_ID + " IN (";
+
+        List<String> list = new ArrayList<>();
         for(Integer i: deletedItems){
-            query += i.toString() + ", ";
+            query += "?, ";
+            list.add(i.toString());
         }
 
-        query = query.substring(0, query.length() - 2) + " )";
+        query = query.substring(0, query.length() - 2) + ")";
 
-        Cursor c =  db.rawQuery( query, new String[]{});
-        c.close();
+        db.delete(RESERVATION_TABLE_NAME, query, list.toArray(new String[list.size()]));
     }
 
     Boolean lookForReservation(Reservation r){
         SQLiteDatabase db = this.getReadableDatabase();
 
         String query = "SELECT * FROM " + RESERVATION_TABLE_NAME +
-                " WHERE " + RESERVATION_COLUMN_DAY + " = " + r.getDay().get(Calendar.DAY_OF_MONTH) +
-                "-" + r.getDay().get(Calendar.MONTH) + "-" + r.getDay().get(Calendar.YEAR) +
-                " AND " + RESERVATION_COLUMN_COURT + " = " + r.getCourt().getID() +
+                " WHERE " + RESERVATION_COLUMN_DAY + " = '" +
+                new SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN).format(r.getDay().getTime()) +
+                "' AND " + RESERVATION_COLUMN_COURT + " = " + r.getCourt().getID() +
                 " AND " + RESERVATION_COLUMN_BEGIN + " = " + r.getBegin() +
                 " AND " + RESERVATION_COLUMN_END + " = " + r.getEnd() + ";";
 
         Cursor c =  db.rawQuery( query, new String[]{});
         boolean check = c.moveToNext();
         c.close();
+        return check;
+    }
+
+    Boolean lookForUsername(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + USER_TABLE_NAME +
+                " WHERE " + USER_COLUMN_USERNAME + " = ?;";
+
+        Cursor c =  db.rawQuery( query, new String[]{username});
+        boolean check = c.moveToNext();
+        c.close();
+
+        return check;
+    }
+
+    Boolean lookForMail(String mail){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + USER_TABLE_NAME +
+                " WHERE " + USER_COLUMN_EMAIL + " = ?;";
+
+        Cursor c =  db.rawQuery( query, new String[]{mail});
+        boolean check = c.moveToNext();
+        c.close();
+
         return check;
     }
 
