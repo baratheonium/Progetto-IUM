@@ -77,4 +77,6 @@
     <string name="null_field">------------</string>
     <string name="title_activity_confirm_reservation">Conferma prenotazione</string>
     <string name="title_activity_reservation_detail">Dettaglio prenotazione</string>
+
+    <string name="confirmCancel">Vuoi revocare la prenotazione?</string>
 </resources>

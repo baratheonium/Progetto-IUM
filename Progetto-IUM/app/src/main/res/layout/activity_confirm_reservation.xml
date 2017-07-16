@@ -185,6 +185,7 @@
             android:tint="#FFFFFF"
             android:layout_gravity="bottom|end"
             app:backgroundTint="@color/colorPrimaryDark"
-            app:rippleColor="@color/colorPrimaryDark" />
+            app:rippleColor="@color/colorPrimaryDark"
+            android:scaleType="center"/>
     </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>

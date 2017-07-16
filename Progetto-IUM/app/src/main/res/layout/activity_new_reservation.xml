@@ -232,7 +232,8 @@
             android:id="@+id/searchButton"
             android:tint="#FFFFFF"
             android:layout_gravity="bottom|end"
-            app:backgroundTint="@color/colorPrimary"/>
+            app:backgroundTint="@color/colorPrimary"
+            android:scaleType="center"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

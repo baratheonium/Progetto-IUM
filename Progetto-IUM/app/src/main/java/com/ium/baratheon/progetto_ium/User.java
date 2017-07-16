@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 /*
@@ -108,10 +109,17 @@ class User implements Serializable{
 
     List<Integer> getReservation() {
         if(reservation != null) {
+            Reservation.removeAllNull();
             Collections.sort(reservation, new Comparator<Integer>() {
                 @Override
                 public int compare(Integer o1, Integer o2) {
-                    return Reservation.get(o2).getDay().compareTo(Reservation.get(o1).getDay());
+                    try {
+                        return Reservation.get(o2).getDay().compareTo(Reservation.get(o1).getDay());
+                    }
+                    catch(NullPointerException e){
+                        if(Reservation.get(o2) == null) return 1;
+                        else return -1;
+                    }
                 }
             });
 
@@ -131,7 +139,13 @@ class User implements Serializable{
         Collections.sort(this.reservation, new Comparator<Integer>(){
             @Override
             public int compare(Integer s1, Integer s2) {
-                return Reservation.get(s2).getDay().compareTo(Reservation.get(s2).getDay());
+                try {
+                    return Reservation.get(s2).getDay().compareTo(Reservation.get(s1).getDay());
+                }
+                catch(NullPointerException e){
+                    if(Reservation.get(s2) == null) return 1;
+                    else return -1;
+                }
             }
         });
 
@@ -139,6 +153,17 @@ class User implements Serializable{
 
     void removeReservations(List<Integer> list){
         this.reservation.removeAll(list);
+        Reservation.removeAllNull(this.reservation);
+    }
+
+    void removeReservation(Reservation reservation){
+        for(Iterator<Integer> i = this.reservation.iterator(); i.hasNext();){
+            if(i.next().equals(reservation.getID())){
+                i.remove();
+            }
+        }
+
+        Reservation.removeAllNull(this.reservation);
     }
 
     List<Integer> getFavorites(){
@@ -154,6 +179,12 @@ class User implements Serializable{
     void removeFavorite(Integer id){
         if(this.favorites.contains(id)) {
             this.favorites.remove(id);
+        }
+
+        for(Iterator<Integer> i = this.favorites.iterator(); i.hasNext();){
+            if(i.next().equals(id)){
+                i.remove();
+            }
         }
     }
 

@@ -215,6 +215,7 @@
         android:layout_gravity="bottom|end"
         app:backgroundTint="@color/colorPrimaryDark"
         android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_vertical_margin"/>
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:scaleType="center"/>
 
 </android.support.design.widget.CoordinatorLayout>

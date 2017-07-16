@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -71,7 +70,7 @@ class Reservation implements Serializable{
         this.day = day;
     }
 
-    public int getBegin() {
+    int getBegin() {
         return begin;
     }
 
@@ -110,6 +109,8 @@ class Reservation implements Serializable{
                 i.remove();
             }
         }
+
+        removeAllNull();
     }
 
     static void remove(List<Integer> list){
@@ -119,7 +120,11 @@ class Reservation implements Serializable{
     }
 
     static void removeAllNull(){
-        reservationList.removeAll(Collections.singleton(null));
+        reservationList.removeAll(Collections.singleton((Reservation)null));
+    }
+
+    static void removeAllNull(List<Integer> list){
+        list.removeAll(Collections.singleton((Integer)null));
     }
 
     static void add(Reservation r){
