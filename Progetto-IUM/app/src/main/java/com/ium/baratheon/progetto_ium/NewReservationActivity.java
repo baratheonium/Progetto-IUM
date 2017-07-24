@@ -80,10 +80,6 @@ public class NewReservationActivity extends AppCompatActivity {
                                     NewReservationActivity.this.startActivity(h);
                                     finish();
                                     break;
-                                case R.id.action_settings:
-                                    // Intent g = new Intent(HomepageActivity.this, Main2Activity.class);
-                                    // HomepageActivity.this.startActivity(g);
-                                    break;
                                 case R.id.action_logout:
                                     Session.getInstance(getApplicationContext()).removePrefs();
                                     h = new Intent(NewReservationActivity.this, LoginActivity.class);

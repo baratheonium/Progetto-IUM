@@ -13,11 +13,6 @@
         android:title="Strutture"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="Impostazioni"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:title="Logout"

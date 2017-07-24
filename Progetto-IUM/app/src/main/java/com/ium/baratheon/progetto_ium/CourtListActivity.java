@@ -65,9 +65,6 @@ public class CourtListActivity extends AppCompatActivity {
                                     break;
                                 case R.id.action_viewCourt:
                                     break;
-                                case R.id.action_settings:
-                                    //activity impostazioni
-                                    break;
                                 case R.id.action_logout:
                                     Session.getInstance(getApplicationContext()).removePrefs();
                                     h = new Intent(CourtListActivity.this, LoginActivity.class);
