@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent h = new Intent(LoginActivity.this, HomepageActivity.class);
                         Session.getInstance(getApplicationContext()).setPrefs(username.getText().toString(), password.getText().toString(), u);
                         LoginActivity.this.startActivity(h);
+                        finish();
                     }
                     else{
                         Toast.makeText(LoginActivity.this, R.string.wrong_combo, Toast.LENGTH_SHORT).show();
